@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/templates/admin/admin.css}"/>
+<head th:replace="fragments/head/head :: head">
+    <title id="pageTitle">Admin Page</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/header/header :: header"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <ul id="adminPageTabs" class="nav nav-pills nav-stacked">
+                <li th:classappend="${addGroupTab}? active"><a href="#addGroupTab">Add group</a></li>
+                <li th:classappend="${addCategoryTab}? active"><a href="#addCategoryTab">Add category</a></li>
+                <li th:classappend="${addItemTab}? active"><a href="#addItemTab">Add item</a></li>
+                <li th:classappend="${userControlTab}? active"><a href="#userControlTab">User control</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-10">
+            <div class="tab-content">
+
+                <div class="tab-pane" id="addGroupTab" th:classappend="${addGroupTab}? active">
+                    <form th:action="@{/user/admin/add_categorypool}" th:object="${categoryPoolForm}" method="post">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error ">
+                            <label for="nameInput">Group name</label>
+                            <input type="text" class="form-control" th:field="*{name}" id="nameInput"
+                                   placeholder="Group name">
+                            <span class="help-block" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+
+
+                <div class="tab-pane" id="addCategoryTab" th:classappend="${addCategoryTab}? active">
+                    <form th:action="@{/user/admin/add_category}" th:object="${categoryForm}" method="post">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error ">
+                            <label for="nameInput">Category name</label>
+                            <input type="text" class="form-control" th:field="*{name}" id="nameInput"
+                                   placeholder="Category name">
+                            <span class="help-block" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </div>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('categoryPoolId')}? has-error">
+                            <label for="categoryPoolInput">Select group</label>
+                            <select class="form-control" th:field="*{categoryPoolId}" id="categoryPoolInput">
+                                <option th:each="categoryPool : ${allCategoryPools}"
+                                        th:value="${categoryPool.id}" th:text="${categoryPool.name}">
+                                </option>
+                            </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('categoryPoolId')}"
+                                  th:errors="*{categoryPoolId}"></span>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+
+                <div class="tab-pane " id="addItemTab" th:classappend="${addItemTab}? active">
+                    <form th:action="@{/user/admin/add_item}" th:object="${itemForm}" method="post">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error ">
+                            <label for="nameInput">Item name</label>
+                            <input type="text" class="form-control" th:field="*{name}" id="nameInput"
+                                   placeholder="Item name">
+                            <span class="help-block" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </div>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('price')}? has-error ">
+                            <label for="nameInput">Price</label>
+                            <input type="text" class="form-control" th:field="*{price}" id="priceInput"
+                                   placeholder="Price">
+                            <span class="help-block" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                        </div>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('description')}? has-error ">
+                            <label for="descriptionInput">Description</label>
+                            <input type="text" class="form-control" th:field="*{description}" id="descriptionInput"
+                                   placeholder="Description">
+                            <span class="help-block" th:if="${#fields.hasErrors('description')}"
+                                  th:errors="*{description}"></span>
+                        </div>
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('categoryId')}? has-error">
+                            <label for="categoryChoose">Select category</label>
+                            <select class="form-control" th:field="*{categoryId}" id="categoryChoose">
+                                <option value="" selected>None</option>
+                                <option th:each="category : ${allCategories}"
+                                        th:value="${category.id}" th:text="${category.name} +' in '+ ${category.categoryPool.name}">
+                                </option>
+                            </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('categoryId')}"
+                                  th:errors="*{categoryId}"></span>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+
+                <div class="tab-pane active" id="userControlTab" th:classappend="${userControlTab}? active">
+                    <div class="form-group pull-left">
+                        <input type="text" class="search form-control" placeholder="What you looking for?">
+                    </div>
+                    <span class="counter pull-left"></span>
+                    <table class="table table-hover table-bordered results">
+                        <thead>
+                        <tr>
+                            <th class="col-sm-3">Name</th>
+                            <th class="col-sm-3">Surname</th>
+                            <th class="col-sm-3">Email</th>
+                            <th class="col-sm-3">Phone number</th>
+                            <th class="col-sm-3">Ban</th>
+                            <th class="col-sm-3">Role</th>
+                        </tr>
+                        <tr class="warning no-result">
+                            <td colspan="4"><i class="fa fa-warning"></i>No result</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="user" th:each="user : ${allUsers}">
+                            <td  th:text="${user.name}">Name</td>
+                            <td th:text="${user.surname}">Surname</td>
+                            <td class="email" th:text="${user.email}">Email</td>
+                            <td th:text="${user.phoneNumber}">Phone number</td>
+                            <td>
+                                <button type="button" class="btn ban-user"
+                                        th:classappend="${user.banned}? btn-danger : btn-success"
+                                        th:text="${user.banned}? Unban: Ban"> State
+                                </button>
+                            </td>
+                            <td th:text="${user.role}">Role</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="admin.js" th:src="@{/templates/admin/admin.js}"></script>
+</div>
+</body>
+</html>

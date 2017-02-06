@@ -1,0 +1,9 @@
+<div th:fragment="head" th:remove="tag" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title th:replace=":: #pageTitle">Title</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css}"/>
+        <script th:src="@{/lib/jquery/jquery-3.1.1.min.js}"></script>
+        <script th:src="@{/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+    </head>
+</div>
