@@ -14,24 +14,37 @@
 
 <!-- Page Content -->
 <div class="container-fluid">
-    <div class="col-md-2">
-        <div class="navbar navbar-fixed-left">
+    <div class="col-md-2" id="categoryNavigation">
+        <div class=" navbar-default navbar-fixed-left">
             <a class="navbar-brand" href="#">Categories</a>
             <ul class="nav navbar-nav">
                 <li class="dropdown" th:each="group: ${allCategoryPools}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span th:text="${group.name}"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
+
                         <li th:each="cat : ${group.categories}"><a href="#" th:text="${cat.name}">Category</a></li>
                     </ul>
                 </li>
-
             </ul>
         </div>
     </div>
 
-    <div class="col-md-10">
-        <!--Carousel-->
+    <div class="col-md-10" id="itemContainer">
+        <div class="row">
+            <div class="col-sm-3 col-lg-3 col-md-3" th:each="item : ${allItems}">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/600x600" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right" th:text="'$'+${item.price}">Price</h4>
+                        <h4><a href="#" th:text="${item.name}">Name</a>
+                        </h4>
+                        <p th:text="${item.description}">Short descpription of a lot </p>
+                    </div>
+                </div>
+            </div>
 
+
+        <!--Carousel-->
         <!--<div class="row carousel-holder">-->
         <!--<div class="col-md-12">-->
         <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
@@ -59,132 +72,6 @@
         <!--</a>-->
         <!--</div>-->
         <!--</div>-->
-
-
-        <div class="row">
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                        <h4 class="pull-right">$24.99</h4>
-                        <h4><a href="#">First Product</a>
-                        </h4>
-                        <p>Short descpription of a lot </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
     </div>
 </div>

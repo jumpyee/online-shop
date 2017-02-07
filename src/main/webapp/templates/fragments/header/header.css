@@ -1,5 +1,5 @@
 body {
-    padding-top: 70px;
+    padding-top: 100px;
 }
 
 @media screen and (max-width: 768px) {
@@ -7,3 +7,9 @@ body {
         padding-top: 0px;
     }
 }
+
+.navigation {
+    font-size:17px;
+    ;
+}
+

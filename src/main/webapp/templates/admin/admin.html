@@ -11,7 +11,7 @@
     </div>
     <div class="row">
         <div class="col-sm-2">
-            <ul id="adminPageTabs" class="nav nav-pills nav-stacked">
+            <ul id="adminPageTabs" class="nav nav-tabs nav-stacked">
                 <li th:classappend="${addGroupTab}? active"><a href="#addGroupTab">Add group</a></li>
                 <li th:classappend="${addCategoryTab}? active"><a href="#addCategoryTab">Add category</a></li>
                 <li th:classappend="${addItemTab}? active"><a href="#addItemTab">Add item</a></li>
@@ -94,7 +94,7 @@
                     </form>
                 </div>
 
-                <div class="tab-pane active" id="userControlTab" th:classappend="${userControlTab}? active">
+                <div class="tab-pane" id="userControlTab" th:classappend="${userControlTab}? active">
                     <div class="form-group pull-left">
                         <input type="text" class="search form-control" placeholder="What you looking for?">
                     </div>
@@ -115,7 +115,7 @@
                         </thead>
                         <tbody>
                         <tr class="user" th:each="user : ${allUsers}">
-                            <td  th:text="${user.name}">Name</td>
+                            <td th:text="${user.name}">Name</td>
                             <td th:text="${user.surname}">Surname</td>
                             <td class="email" th:text="${user.email}">Email</td>
                             <td th:text="${user.phoneNumber}">Phone number</td>
