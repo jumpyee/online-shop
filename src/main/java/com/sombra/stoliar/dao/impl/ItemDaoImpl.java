@@ -21,14 +21,24 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
-    public List findAllItems() {
+    public List <Item> findAllItems() {
         return sessionFactory.getCurrentSession().createNamedQuery("findAllItems", Item.class).list();
     }
 
 
     @Override
-    public List<Item> findItemsByCategory(String name) {
-        return sessionFactory.getCurrentSession().createNamedQuery("findItemsByCategory", Item.class).setParameter("categoryName", name)
+    public List<Item> findItemsByCategoryAndGroup(String category, String group) {
+        return sessionFactory.getCurrentSession().createNamedQuery("findItemsByCategoryAndGroup", Item.class).setParameter("categoryName", category ).setParameter("groupName",group)
                 .list();
+    }
+
+    @Override
+    public Item findItemById(Integer id) {
+        return sessionFactory.getCurrentSession().get(Item.class, id);
+    }
+
+    @Override
+    public void deleteItem(Item item) {
+        sessionFactory.getCurrentSession().delete(item);
     }
 }

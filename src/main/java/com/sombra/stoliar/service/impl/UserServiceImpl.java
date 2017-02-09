@@ -16,6 +16,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final static String AUTHENTICATED_USER_KEY = "authenticatedUser";
+    private final static String AUTHENTICATED_ADMIN_KEY = "authenticatedAdmin";
 
     @Autowired
     private UserDao userDao;
@@ -49,6 +50,9 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             valid = user.getPassword().equals(securityUtil.hashPassword(password));
             if (valid) {
+                if (user.getRole().equals("admin")){
+                    session.setAttribute(AUTHENTICATED_ADMIN_KEY, user);
+                }
                 session.setAttribute(AUTHENTICATED_USER_KEY, user);
             }
         }
@@ -58,6 +62,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logoutUser() {
         session.removeAttribute(AUTHENTICATED_USER_KEY);
+        session.removeAttribute(AUTHENTICATED_ADMIN_KEY);
+
     }
 
     @Override

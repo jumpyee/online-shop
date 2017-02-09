@@ -7,7 +7,15 @@ import java.util.List;
 public interface ItemDao {
     Item persist(Item item);
 
-    List findAllItems();
+    List<Item> findAllItems();
 
-    List<Item> findItemsByCategory(String name);
+
+
+    List<Item> findItemsByCategoryAndGroup(String category, String group);
+
+    Item findItemById(Integer id);
+
+
+
+    void deleteItem(Item item);
 }

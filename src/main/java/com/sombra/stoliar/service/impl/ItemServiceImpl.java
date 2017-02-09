@@ -23,12 +23,21 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> findItemsByCategory(Category category) {
-        return itemDao.findItemsByCategory(category.getName());
+    public List<Item> findItemsByCategoryAndGroup(String category, String group) {
+        return itemDao.findItemsByCategoryAndGroup(category,group);
     }
 
     @Override
-    public List<Item> findAllItems () {
+    public List<Item> findAllItems() {
         return itemDao.findAllItems();
+    }
+
+    @Override
+    public boolean deleteItemById(Integer id) {
+        Item item = itemDao.findItemById(id);
+        if(item!=null) {
+            itemDao.deleteItem(item);
+            return true;
+        } return false;
     }
 }

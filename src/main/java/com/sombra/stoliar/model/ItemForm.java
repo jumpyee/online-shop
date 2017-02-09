@@ -1,6 +1,7 @@
 package com.sombra.stoliar.model;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 
@@ -15,8 +16,10 @@ public class ItemForm {
     @NotBlank(message = "Field can not be empty")
     private String description;
 
-    @NotNull
+    @NotNull(message = "You have to choose category")
     private Integer categoryId;
+
+    private MultipartFile image;
 
     public String getName() {
         return name;
@@ -48,5 +51,13 @@ public class ItemForm {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 }

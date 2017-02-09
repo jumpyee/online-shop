@@ -35,9 +35,14 @@ $(document).ready(function () {
 
     $('#userControlTab .user .ban-user').click(function (e) {
         e.preventDefault();
+        $.post('/async/user/admin/ban_user', {email:email}, function (response) {
+            if (response) {
+                $button.removeClass('btn-success').addClass('btn-danger').text('Unban');
+            }
+        });
+
         var $button = $(this);
         var email = $button.closest('.user').find('.email').text();
-        debugger;
         if ($button.text() == 'Ban') {
             $.post('/async/user/admin/ban_user', {email:email}, function (response) {
                 if (response) {
@@ -52,5 +57,8 @@ $(document).ready(function () {
             });
         }
     });
+
+
+
 
 });

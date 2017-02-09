@@ -1,5 +1,6 @@
 package com.sombra.stoliar.controller;
 
+import com.sombra.stoliar.service.ItemService;
 import com.sombra.stoliar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class AdminAjaxController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ItemService itemService;
+
     @ResponseBody
     @RequestMapping(value = "/ban_user", method = RequestMethod.POST)
     public boolean banUser(@RequestParam("email") String email) {
@@ -27,5 +31,10 @@ public class AdminAjaxController {
         return userService.unbanUser(email);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/delete_item", method = RequestMethod.POST)
+    public boolean deleteItem(@RequestParam("id") Integer id) {
+       return itemService.deleteItemById(id);
+    }
 
 }

@@ -11,15 +11,19 @@ import com.sombra.stoliar.service.CategoryPoolService;
 import com.sombra.stoliar.service.CategoryService;
 import com.sombra.stoliar.service.ItemService;
 import com.sombra.stoliar.service.UserService;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -105,10 +109,24 @@ public class AdminController {
         String name = itemForm.getName();
         Double price = itemForm.getPrice();
         String description = itemForm.getDescription();
+        String imageReference="images/"+itemForm.getImage().getOriginalFilename();
+
         Category category = categoryService.findCategoryById(itemForm.getCategoryId());
-        itemService.saveItem(new Item(name, price, description, category));
+
+        try {
+            saveFile(itemForm.getImage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        itemService.saveItem(new Item(name, price, description, category,imageReference));
         return "redirect:/user/admin";
     }
 
 
+    private void saveFile(MultipartFile multipartFile) throws Exception {
+        byte[] bytes = multipartFile.getBytes();
+        Path path = Paths.get("C://Users//Taras Stolyar//IdeaProjects//OnlineShop//src//main//webapp//images//" + multipartFile.getOriginalFilename());
+        Files.write(path, bytes);
+    }
 }

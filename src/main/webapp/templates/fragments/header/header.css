@@ -10,6 +10,10 @@ body {
 
 .navigation {
     font-size:17px;
-    ;
+
 }
 
+
+#headerNavbar {
+    background: #000000;
+}

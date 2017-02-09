@@ -10,7 +10,11 @@ public interface ItemService {
 
     Item saveItem(Item item);
 
-    List<Item> findItemsByCategory(Category category);
+
+
+    List<Item> findItemsByCategoryAndGroup(String category, String group);
 
     List<Item> findAllItems();
+
+    boolean deleteItemById(Integer id);
 }

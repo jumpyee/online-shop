@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="tab-pane " id="addItemTab" th:classappend="${addItemTab}? active">
-                    <form th:action="@{/user/admin/add_item}" th:object="${itemForm}" method="post">
+                    <form th:action="@{/user/admin/add_item}" th:object="${itemForm}" enctype="multipart/form-data" method="post">
                         <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error ">
                             <label for="nameInput">Item name</label>
                             <input type="text" class="form-control" th:field="*{name}" id="nameInput"
@@ -90,6 +90,14 @@
                             <span class="help-block" th:if="${#fields.hasErrors('categoryId')}"
                                   th:errors="*{categoryId}"></span>
                         </div>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('image')}? has-error ">
+                            <label class="control-label">Select File</label>
+                            <input  th:field="*{image}" class="file" type="file" name="Image" >
+                            <span class="help-block" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+                        </div>
+
+
+
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                 </div>
