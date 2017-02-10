@@ -16,5 +16,7 @@ public interface ItemService {
 
     List<Item> findAllItems();
 
+    Item findItemById(Integer id);
+
     boolean deleteItemById(Integer id);
 }

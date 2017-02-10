@@ -1,16 +1,16 @@
-body {
-    padding-top: 0px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
-.portfolio-item {
-    margin-bottom: 25px;
-}
-
-footer {
-    margin: 50px 0;
-}
-
 h1 .page-header {
     margin-top: 0px;
     padding-top: 0px;
 }
+
+.thumbnail {
+    height:500px;
+    width:500px;
+
+}
+
+.thumbnail img {
+    width: inherit;
+    height: inherit;
+}
+

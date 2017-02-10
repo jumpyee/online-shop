@@ -25,7 +25,6 @@ public class User {
     @Column(unique = true)
     private String email;
     private String phoneNumber;
-    //how to set default column?
     private boolean isBanned = false;
     private String role;
 
@@ -35,7 +34,6 @@ public class User {
 
     public User() {
     }
-
 
     public User(UserRegistrationForm userForm) {
         this.name = userForm.getName();
@@ -101,7 +99,6 @@ public class User {
     public void setCart(List<Item> cart) {
         this.cart = cart;
     }
-
 
     public String getRole() {
         return role;
