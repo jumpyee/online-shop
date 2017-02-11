@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/templates/item/item.css}"/>
+<head th:replace="fragments/head/head :: head">
+    <title id="pageTitle">Home</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/header/header :: header"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <img th:src="@{${itemModifyForm.imageReference}}" alt="Image not found">
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="tab-pane">
+                <form th:action="@{/user/admin/modify_item}" th:object="${itemModifyForm}"
+                      enctype="multipart/form-data" method="post">
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{imageReference}">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error ">
+                        <label for="nameInput">Item name</label>
+                        <input type="text" class="form-control" th:field="*{name}" id="nameInput"
+                               placeholder="Item name">
+                        <span class="help-block" th:if="${#fields.hasErrors('name')}"
+                              th:errors="*{name}"></span>
+                    </div>
+                    <div class="form-group" th:classappend="${#fields.hasErrors('price')}? has-error ">
+                        <label for="priceInput">Price</label>
+                        <input type="text" class="form-control" th:field="*{price}" id="priceInput"
+                               placeholder="Price">
+                        <span class="help-block" th:if="${#fields.hasErrors('price')}"
+                              th:errors="*{price}"></span>
+                    </div>
+                    <div class="form-group"
+                         th:classappend="${#fields.hasErrors('description')}? has-error ">
+                        <label for="descriptionInput">Description</label>
+                        <textarea rows="3" id="descriptionInput" class="form-control" th:field="*{description}"
+                                  placeholder="Description"></textarea>
+                        <span class="help-block" th:if="${#fields.hasErrors('description')}"
+                              th:errors="*{description}"></span>
+                    </div>
+                    <div class="form-group" th:classappend="${#fields.hasErrors('categoryId')}? has-error">
+                        <label for="categoryChoose">Select category</label>
+                        <select class="form-control" th:field="*{categoryId}" id="categoryChoose">
+                            <option th:each="cat : ${allCategories}"
+                                    th:value="${cat.id}" th:selected="${cat.id eq itemModifyForm.categoryId}? selected"
+                                    th:text="${cat.name} +' in '+ ${cat.categoryPool.name}">
+                            </option>
+                        </select>
+                        <span class="help-block" th:if="${#fields.hasErrors('categoryId')}"
+                              th:errors="*{categoryId}"></span>
+                    </div>
+                    <div class="form-group" th:classappend="${#fields.hasErrors('image')}? has-error ">
+                        <label class="control-label">Select File</label>
+                        <input th:field="*{image}" class="file" type="file" name="Image">
+                        <span class="help-block" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/templates/item/item.js}"></script>
+
+</body>
+</html>

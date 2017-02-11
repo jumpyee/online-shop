@@ -2,7 +2,6 @@
     <link rel="stylesheet" type="text/css" th:href="@{/templates/fragments/header/header.css}"/>
             <nav class="navbar navbar-default navbar-fixed-top" id="headerNavbar" role="navigation" >
                 <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header ">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                 data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
@@ -13,8 +12,6 @@
                         </button>
                         <a class="navbar-brand" href="#">Brand</a>
                     </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse navigation" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav " >
                             <li><a href="/">Home <span class="sr-only">(current)</span></a></li>
@@ -46,6 +43,7 @@
                                 <li id="headerLoginButton"><a href="#">Login</a></li>
                             </div>
                             <div th:if="${session.authenticatedUser != null}" th:remove="tag">
+                                <li th:if="${session.authenticatedUser.role!='admin'}" id="cart"><a  class="glyphicon glyphicon-shopping-cart" href="#" ></a></li>
                                 <li id="userEmail"><a href="#" th:text="${session.authenticatedUser.email}"></a></li>
                                 <li id="logout"><a href="/user/logout">Logout</a></li>
                                 <div th:if="${session.authenticatedUser.role=='admin'}" th:remove="tag">
@@ -53,8 +51,8 @@
                                 </div>
                             </div>
                         </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
+                    </div>
+                </div>
             </nav>
     <div th:replace="fragments/modal/registration/registration :: registrationModal"></div>
     <div th:replace="fragments/modal/login/login :: loginModal"></div>

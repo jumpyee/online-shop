@@ -22,8 +22,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
                             th:text="${group.name}"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li th:each="cat : ${group.categories}"><a th:href="'?group='+${cat.categoryPool.name}+'&category='+${cat.name}" th:text="${cat.name}">Category</a></li>
-
+                        <li th:each="cat : ${group.categories}"><a th:href="'?group='+${cat.categoryPool.name}+
+                        '&category='+${cat.name}" th:text="${cat.name}">Category</a></li>
                     </ul>
                 </li>
             </ul>
@@ -33,13 +33,14 @@
     <div class="col-md-10" id="itemContainer">
         <div class="row">
             <div class="col-sm-3 col-lg-3 col-md-3 item-container" th:each="item : ${allItems}">
-                <div class="thumbnail image-container">
+                <div class="thumbnail">
                     <div class="item">
                         <img th:src="@{${item.imageReference}}" alt="Image not found">
                     </div>
                     <div class="caption">
                         <h4 class="pull-right" th:text="'$'+${item.price}">Price</h4>
-                        <h4><a href="#" th:text="${item.name}">Name</a>
+                        <h4>
+                            <a th:href="'item/'+${item.id}" th:text="${item.name}">Name</a>
                         </h4>
                         <p th:text="${item.description}">Short description of a lot </p>
                     </div>
@@ -47,10 +48,10 @@
                     <div th:if="${session.authenticatedAdmin!= null}" class="container">
                         <button type="button" class="btn btn-danger" id="deleteItemButton">Delete</button>
                         <input type="hidden" th:value="${item.id}" name="id"/>
+                        <a type="button" th:href="'user/admin/modify_item/'+${item.id}" class="btn btn-warning"
+                           id="modifyItemButton">Modify</a>
                     </div>
-
                 </div>
-
             </div>
 
 

@@ -10,7 +10,7 @@ public interface ItemService {
 
     Item saveItem(Item item);
 
-
+    Item modifyItem(Item item);
 
     List<Item> findItemsByCategoryAndGroup(String category, String group);
 

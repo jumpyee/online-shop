@@ -1,7 +1,6 @@
 package com.sombra.stoliar.service.impl;
 
 import com.sombra.stoliar.dao.ItemDao;
-import com.sombra.stoliar.entity.Category;
 import com.sombra.stoliar.entity.Item;
 import com.sombra.stoliar.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public Item modifyItem(Item item) {
+        return itemDao.modify(item);
+    }
+
+    @Override
     public List<Item> findItemsByCategoryAndGroup(String category, String group) {
-        return itemDao.findItemsByCategoryAndGroup(category,group);
+        return itemDao.findItemsByCategoryAndGroup(category, group);
     }
 
     @Override
@@ -33,11 +37,18 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public Item findItemById(Integer id) {
+        return itemDao.findItemById(id);
+
+    }
+
+    @Override
     public boolean deleteItemById(Integer id) {
         Item item = itemDao.findItemById(id);
-        if(item!=null) {
+        if (item != null) {
             itemDao.deleteItem(item);
             return true;
-        } return false;
+        }
+        return false;
     }
 }

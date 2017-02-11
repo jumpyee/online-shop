@@ -7,6 +7,8 @@ import java.util.List;
 public interface ItemDao {
     Item persist(Item item);
 
+    Item modify(Item item);
+
     List<Item> findAllItems();
 
 

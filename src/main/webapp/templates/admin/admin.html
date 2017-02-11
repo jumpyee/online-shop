@@ -9,7 +9,7 @@
     <div class="row">
         <div th:replace="fragments/header/header :: header"></div>
     </div>
-    <div class="row">
+    <div class="row" th:if="${session.authenticatedAdmin!= null}">
         <div class="col-sm-2">
             <ul id="adminPageTabs" class="nav nav-tabs nav-stacked">
                 <li th:classappend="${addGroupTab}? active"><a href="#addGroupTab">Add group</a></li>
@@ -57,8 +57,9 @@
                     </form>
                 </div>
 
-                <div class="tab-pane " id="addItemTab" th:classappend="${addItemTab}? active">
-                    <form th:action="@{/user/admin/add_item}" th:object="${itemForm}" enctype="multipart/form-data" method="post">
+                <div class="tab-pane" id="addItemTab" th:classappend="${addItemTab}? active">
+                    <form th:action="@{/user/admin/add_item}" th:object="${itemForm}" enctype="multipart/form-data"
+                          method="post">
                         <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error ">
                             <label for="nameInput">Item name</label>
                             <input type="text" class="form-control" th:field="*{name}" id="nameInput"
@@ -66,7 +67,7 @@
                             <span class="help-block" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                         </div>
                         <div class="form-group" th:classappend="${#fields.hasErrors('price')}? has-error ">
-                            <label for="nameInput">Price</label>
+                            <label for="priceInput">Price</label>
                             <input type="text" class="form-control" th:field="*{price}" id="priceInput"
                                    placeholder="Price">
                             <span class="help-block" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
@@ -78,13 +79,13 @@
                             <span class="help-block" th:if="${#fields.hasErrors('description')}"
                                   th:errors="*{description}"></span>
                         </div>
-
                         <div class="form-group" th:classappend="${#fields.hasErrors('categoryId')}? has-error">
                             <label for="categoryChoose">Select category</label>
                             <select class="form-control" th:field="*{categoryId}" id="categoryChoose">
                                 <option value="" selected>None</option>
                                 <option th:each="category : ${allCategories}"
-                                        th:value="${category.id}" th:text="${category.name} +' in '+ ${category.categoryPool.name}">
+                                        th:value="${category.id}"
+                                        th:text="${category.name} +' in '+ ${category.categoryPool.name}">
                                 </option>
                             </select>
                             <span class="help-block" th:if="${#fields.hasErrors('categoryId')}"
@@ -92,12 +93,9 @@
                         </div>
                         <div class="form-group" th:classappend="${#fields.hasErrors('image')}? has-error ">
                             <label class="control-label">Select File</label>
-                            <input  th:field="*{image}" class="file" type="file" name="Image" >
+                            <input th:field="*{image}" class="file" type="file" name="Image">
                             <span class="help-block" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
                         </div>
-
-
-
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                 </div>
@@ -140,8 +138,7 @@
                 </div>
             </div>
         </div>
+        <script src="admin.js" th:src="@{/templates/admin/admin.js}"></script>
     </div>
-    <script src="admin.js" th:src="@{/templates/admin/admin.js}"></script>
-</div>
 </body>
 </html>

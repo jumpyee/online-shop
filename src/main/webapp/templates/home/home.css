@@ -38,10 +38,12 @@
 
 }
 
-.image-container {
+.thumbnail {
     width: 300px;
     height: 300px;
 }
+
+
 
 * {
     -moz-box-sizing: border-box;
@@ -53,7 +55,6 @@
 
 .item {
     position: relative;
-
     border: 1px solid #333;
     margin: 2%;
     overflow: hidden;

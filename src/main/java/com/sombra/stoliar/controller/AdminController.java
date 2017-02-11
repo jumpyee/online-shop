@@ -7,28 +7,26 @@ import com.sombra.stoliar.entity.User;
 import com.sombra.stoliar.model.CategoryForm;
 import com.sombra.stoliar.model.CategoryPoolForm;
 import com.sombra.stoliar.model.ItemForm;
-import com.sombra.stoliar.service.CategoryPoolService;
-import com.sombra.stoliar.service.CategoryService;
-import com.sombra.stoliar.service.ItemService;
-import com.sombra.stoliar.service.UserService;
-import org.hibernate.SessionFactory;
+import com.sombra.stoliar.model.ItemModifyForm;
+import com.sombra.stoliar.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
 @RequestMapping("/user/admin")
 public class AdminController {
+
+    @Autowired
+    private ImagesService imagesService;
 
     @Autowired
     private CategoryService categoryService;
@@ -73,7 +71,7 @@ public class AdminController {
     }
 
     @RequestMapping(path = "", method = RequestMethod.GET)
-    public String adminPage(Model model) {
+    public String adminPage() {
         return "admin/admin";
     }
 
@@ -109,24 +107,53 @@ public class AdminController {
         String name = itemForm.getName();
         Double price = itemForm.getPrice();
         String description = itemForm.getDescription();
-        String imageReference="images/"+itemForm.getImage().getOriginalFilename();
-
         Category category = categoryService.findCategoryById(itemForm.getCategoryId());
 
-        try {
-            saveFile(itemForm.getImage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String fileName = imagesService.saveImage(itemForm.getImage());
+        String imageReference = "/images/" + fileName;
 
-        itemService.saveItem(new Item(name, price, description, category,imageReference));
+        itemService.saveItem(new Item(name, price, description, category, imageReference));
         return "redirect:/user/admin";
     }
 
-
-    private void saveFile(MultipartFile multipartFile) throws Exception {
-        byte[] bytes = multipartFile.getBytes();
-        Path path = Paths.get("C://Users//Taras Stolyar//IdeaProjects//OnlineShop//src//main//webapp//images//" + multipartFile.getOriginalFilename());
-        Files.write(path, bytes);
+    @RequestMapping(value = "/modify_item/{id}", method = RequestMethod.GET)
+    public String modifyPage(@PathVariable("id") Integer id, Model model) {
+        Item item = itemService.findItemById(id);
+        ItemModifyForm itemModifyForm = new ItemModifyForm();
+        itemModifyForm.setId(item.getId());
+        itemModifyForm.setName(item.getName());
+        itemModifyForm.setDescription(item.getDescription());
+        itemModifyForm.setPrice(item.getPrice());
+        itemModifyForm.setImageReference(item.getImageReference());
+        itemModifyForm.setCategoryId(item.getCategory().getId());
+        model.addAttribute("itemModifyForm", itemModifyForm);
+        return "modify-item/item";
     }
+
+    @RequestMapping(value = "/modify_item", method = RequestMethod.POST)
+    public String modifyItem(@Validated @ModelAttribute("itemModifyForm") ItemModifyForm itemModifyForm, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "modify-item/item";
+        }
+        Item item = itemService.findItemById(itemModifyForm.getId());
+        item.setName(itemModifyForm.getName());
+        item.setPrice(itemModifyForm.getPrice());
+        item.setDescription(itemModifyForm.getDescription());
+
+        Category category = categoryService.findCategoryById(itemModifyForm.getCategoryId());
+        item.setCategory(category);
+
+        if (!itemModifyForm.getImage().isEmpty()) {
+            String fileName = imagesService.saveImage(itemModifyForm.getImage());
+
+            String imageReference = "/images/" + fileName;
+            item.setImageReference(imageReference);
+        } else {
+            item.setImageReference(itemModifyForm.getImageReference());
+        }
+
+        itemService.modifyItem(item);
+        return "redirect:/";
+    }
+
 }
