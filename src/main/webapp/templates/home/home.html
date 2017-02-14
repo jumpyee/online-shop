@@ -30,80 +30,54 @@
         </div>
     </div>
 
-    <div class="col-md-10" id="itemContainer">
-        <div class="row">
-            <div class="col-sm-3 col-lg-3 col-md-3 item-container" th:each="item : ${allItems}">
-                <div class="thumbnail">
-                    <div class="item">
-                        <img th:src="@{${item.imageReference}}" alt="Image not found">
-                    </div>
-                    <div class="caption">
-                        <h4 class="pull-right" th:text="'$'+${item.price}">Price</h4>
-                        <h4>
-                            <a th:href="'item/'+${item.id}" th:text="${item.name}">Name</a>
-                        </h4>
-                        <p th:text="${item.description}">Short description of a lot </p>
-                    </div>
 
-                    <div th:if="${session.authenticatedAdmin!= null}" class="container">
-                        <button type="button" class="btn btn-danger" id="deleteItemButton">Delete</button>
-                        <input type="hidden" th:value="${item.id}" name="id"/>
-                        <a type="button" th:href="'user/admin/modify_item/'+${item.id}" class="btn btn-warning"
-                           id="modifyItemButton">Modify</a>
-                    </div>
+
+    <div class="col-md-10" id="itemContainer">
+        <div class="card pull-left" th:each="item : ${allItems}">
+            <img class="card-img-top img-responsive" th:src="@{${item.imageReference}}" alt="Card image cap">
+            <div class="card-block">
+                <a th:href="'item/'+${item.id}">
+                    <h5  th:text="${item.name}" style="display: inline-block" class="card-title">Card title</h5>
+                    <h6  th:text="'$'+${item.price}"  class="item-price">Card title</h6>
+
+                </a>
+                <p th:text="${item.description}" class="card-text">Short description of a lot </p>
+                <div th:if="${session.authenticatedAdmin!= null}"  th:remove="tag">
+                    <input type="hidden" th:value="${item.id}" name="id"/>
+                    <a class="btn btn-danger" id="deleteItemButton">Delete</a>
+                    <a th:href="'user/admin/modify_item/'+${item.id}" class="btn btn-warning"
+                       id="modifyItemButton">Modify</a>
                 </div>
             </div>
-
-
-            <!--Carousel-->
-            <!--<div class="row carousel-holder">-->
-            <!--<div class="col-md-12">-->
-            <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
-            <!--<ol class="carousel-indicators">-->
-            <!--<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>-->
-            <!--<li data-target="#carousel-example-generic" data-slide-to="1"></li>-->
-            <!--<li data-target="#carousel-example-generic" data-slide-to="2"></li>-->
-            <!--</ol>-->
-            <!--<div class="carousel-inner">-->
-            <!--<div class="item active">-->
-            <!--<img class="slide-image" src="http://placehold.it/800x300" alt="">-->
-            <!--</div>-->
-            <!--<div class="item">-->
-            <!--<img class="slide-image" src="http://placehold.it/800x300" alt="">-->
-            <!--</div>-->
-            <!--<div class="item">-->
-            <!--<img class="slide-image" src="http://placehold.it/800x300" alt="">-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">-->
-            <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-            <!--</a>-->
-            <!--<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">-->
-            <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
-            <!--</a>-->
-            <!--</div>-->
-            <!--</div>-->
-
         </div>
+        <!--<div class="row">-->
+            <!--<div class="col-sm-3 col-lg-3 col-md-3 item-container" th:each="item : ${allItems}">-->
+                <!--<div class="thumbnail">-->
+                    <!--<div class="item">-->
+                        <!--<img th:src="@{${item.imageReference}}" alt="Image not found">-->
+                    <!--</div>-->
+                    <!--<div class="caption">-->
+                        <!--<h4 class="pull-right" th:text="'$'+${item.price}">Price</h4>-->
+                        <!--<h4>-->
+                            <!--<a th:href="'item/'+${item.id}" th:text="${item.name}">Name</a>-->
+                        <!--</h4>-->
+                        <!--<p th:text="${item.description}">Short description of a lot </p>-->
+                    <!--</div>-->
+
+                    <!--<div th:if="${session.authenticatedAdmin!= null}" class="container">-->
+                        <!--<button type="button" class="btn btn-danger" id="deleteItemButton">Delete</button>-->
+                        <!--<input type="hidden" th:value="${item.id}" name="id"/>-->
+                        <!--<a type="button" th:href="'user/admin/modify_item/'+${item.id}" class="btn btn-warning"-->
+                           <!--id="modifyItemButton">Modify</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
 <!-- /.container -->
 
-<div class="container">
 
-    <hr>
-
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
-            </div>
-        </div>
-    </footer>
-
-</div>
-<!-- /.container -->
 
 <script src="home.js" th:src="@{/templates/home/home.js}"></script>
 </body>

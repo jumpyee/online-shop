@@ -1,6 +1,7 @@
 package com.sombra.stoliar.service.impl;
 
 import com.sombra.stoliar.dao.UserDao;
+import com.sombra.stoliar.entity.Item;
 import com.sombra.stoliar.entity.User;
 import com.sombra.stoliar.service.UserService;
 import com.sombra.stoliar.utils.SecurityUtil;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -50,7 +52,7 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             valid = user.getPassword().equals(securityUtil.hashPassword(password));
             if (valid) {
-                if (user.getRole().equals("admin")){
+                if (user.getRole().equals("admin")) {
                     session.setAttribute(AUTHENTICATED_ADMIN_KEY, user);
                 }
                 session.setAttribute(AUTHENTICATED_USER_KEY, user);
@@ -92,4 +94,20 @@ public class UserServiceImpl implements UserService {
         }
         return valid;
     }
+
+    @Override
+    public User updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+    @Override
+    public Map<Item,Integer> findCartByUser(String email) {
+        return userDao.findCartByUser(userDao.findUserByEmail(email));
+    }
+
+
+
+
+
+
 }

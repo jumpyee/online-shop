@@ -6,7 +6,7 @@
 }
 
 .navbar-fixed-left .navbar-nav > li {
-    float: left;  /* Cancel default li float: left */
+    float: left; /* Cancel default li float: left */
     width: 139px;
 }
 
@@ -29,46 +29,36 @@
 #categoryNavigation a.navbar-brand {
 
 }
+
 #itemContainer {
     padding-left: 20px;
 }
 
-.thumbnail .caption a{
-    color: green;
+.card {
+    padding: 15px;
+    border: 1px solid gray;
+    margin: 5px;
+    border-radius: 15px;
+    width: 30rem;
+    box-shadow: 5px 5px 5px 0 darkgrey;
 
 }
 
-.thumbnail {
-    width: 300px;
-    height: 300px;
+.card .card-img-top {
+    max-height: 150px;
+
 }
 
-
-
-* {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-.item {
-    position: relative;
-    border: 1px solid #333;
-    margin: 2%;
+.card .card-text {
+    max-height: 50px;
+    min-height: 50px;
+    text-overflow: ellipsis;
     overflow: hidden;
-    width: 100%;
 }
-.item img {
-    max-width: 100%;
 
-    -moz-transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
+.item-price {
+float: right;
+    display: inline-block;
 }
-.item:hover img {
-    -moz-transform: scale(1.8);
-    -webkit-transform: scale(1.8);
-    transform: scale(1.8);
-}
+
+

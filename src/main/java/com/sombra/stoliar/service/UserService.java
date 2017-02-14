@@ -1,10 +1,13 @@
 package com.sombra.stoliar.service;
 
+import com.sombra.stoliar.entity.Item;
 import com.sombra.stoliar.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
-public interface UserService {
+public interface
+UserService {
 
     User findUserByEmail(String email);
 
@@ -19,4 +22,10 @@ public interface UserService {
     boolean banUser(String email);
 
     boolean unbanUser(String email);
+
+    User updateUser(User user);
+
+    Map<Item,Integer> findCartByUser(String email);
+
+
 }

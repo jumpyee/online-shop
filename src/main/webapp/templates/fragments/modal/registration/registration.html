@@ -1,6 +1,6 @@
 <div th:fragment="registrationModal" xmlns:th="http://www.thymeleaf.org" th:remove="tag">
     <link rel="stylesheet" type="text/css" th:href="@{/templates/fragments/modal/registration/registration.css}"/>
-    <div id="registrationModal" class="modal fade" tabindex="-1" role="dialog" >
+    <div id="registrationModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -9,7 +9,8 @@
                     <h4 class="modal-title">Registration</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="registrationForm" th:action="@{/async/user/register}" th:object="${userRegistrationForm}" method="post">
+                    <form id="registrationForm" th:action="@{/async/user/register}" th:object="${userRegistrationForm}"
+                          method="post">
                         <div class="form-group">
                             <label for="inputEmail">Email address</label>
                             <input type="email" class="form-control" id="inputEmail"

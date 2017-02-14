@@ -4,12 +4,13 @@ package com.sombra.stoliar.entity;
 import com.sombra.stoliar.model.UserRegistrationForm;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @NamedQueries({
         @NamedQuery(name = "delete", query = "delete  from User u where u.name= :name and u.surname= :surname and u.password = :password and u.email = :email and u.phoneNumber= :phonenumber"),
         @NamedQuery(name = "findAllUsers", query = " from User "),
-        @NamedQuery(name = "findUserByEmail", query = "select u from User u where u.email= :email")
+        @NamedQuery(name = "findUserByEmail", query = "select u from User u where u.email= :email"),
 })
 @Entity
 public class User {
@@ -28,9 +29,14 @@ public class User {
     private boolean isBanned = false;
     private String role;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Item> cart;
-    //private Map<Item, Integer> cart;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_cart",joinColumns = @JoinColumn(name = "user_id"))
+    @MapKeyJoinColumn(name = "item_id")
+    @Column(name = "item_amount")
+    private Map<Item, Integer> cart = new HashMap<>();
+
+
 
     public User() {
     }
@@ -92,11 +98,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Item> getCart() {
+    public Map<Item, Integer> getCart() {
         return cart;
     }
 
-    public void setCart(List<Item> cart) {
+    public void setCart(Map<Item, Integer> cart) {
         this.cart = cart;
     }
 
@@ -115,4 +121,6 @@ public class User {
     public void setBanned(boolean banned) {
         isBanned = banned;
     }
+
+
 }

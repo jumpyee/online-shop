@@ -1,6 +1,5 @@
 package com.sombra.stoliar.service;
 
-import com.sombra.stoliar.entity.Category;
 import com.sombra.stoliar.entity.Item;
 
 import java.util.List;

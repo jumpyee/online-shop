@@ -35,7 +35,7 @@ $(document).ready(function () {
 
     $('#userControlTab .user .ban-user').click(function (e) {
         e.preventDefault();
-        $.post('/async/user/admin/ban_user', {email:email}, function (response) {
+        $.post('/async/user/admin/ban_user', {email: email}, function (response) {
             if (response) {
                 $button.removeClass('btn-success').addClass('btn-danger').text('Unban');
             }
@@ -44,21 +44,19 @@ $(document).ready(function () {
         var $button = $(this);
         var email = $button.closest('.user').find('.email').text();
         if ($button.text() == 'Ban') {
-            $.post('/async/user/admin/ban_user', {email:email}, function (response) {
+            $.post('/async/user/admin/ban_user', {email: email}, function (response) {
                 if (response) {
                     $button.removeClass('btn-success').addClass('btn-danger').text('Unban');
                 }
             });
         } else {
-            $.post('/async/user/admin/unban_user', {email:email}, function (response) {
+            $.post('/async/user/admin/unban_user', {email: email}, function (response) {
                 if (response) {
                     $button.removeClass('btn-danger').addClass('btn-success').text('Ban');
                 }
             });
         }
     });
-
-
 
 
 });

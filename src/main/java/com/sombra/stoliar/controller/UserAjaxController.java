@@ -1,19 +1,22 @@
 package com.sombra.stoliar.controller;
 
 
+import com.sombra.stoliar.entity.Item;
 import com.sombra.stoliar.entity.User;
 import com.sombra.stoliar.model.FormResponse;
 import com.sombra.stoliar.model.UserLoginForm;
 import com.sombra.stoliar.model.UserRegistrationForm;
+import com.sombra.stoliar.service.ItemService;
 import com.sombra.stoliar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 
 @Controller
@@ -21,7 +24,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserAjaxController {
 
     @Autowired
+    private ItemService itemService;
+
+    @Autowired
     private UserService userService;
+
+    @Autowired
+    private HttpSession session;
 
     @RequestMapping(value = "/register")
     @ResponseBody
@@ -55,6 +64,25 @@ public class UserAjaxController {
             }
         }
         return formResponse;
+    }
+
+    @ResponseBody
+    @RequestMapping(path = "/item/add_to_cart",method = RequestMethod.POST)
+    public boolean addItemToCart (@RequestParam("id") Integer id, @RequestParam("email") String email) {
+        User user =userService.findUserByEmail(email);
+        Item item = itemService.findItemById(id);
+
+        Integer amount = user.getCart().get(item);
+        if (amount==null) {
+            user.getCart().put(item,1);
+        } else  {
+
+            user.getCart().put(item,amount+1);
+        }
+        userService.updateUser(user);
+        session.setAttribute("authenticatedUser", user);
+        return true;
+
     }
 
 }

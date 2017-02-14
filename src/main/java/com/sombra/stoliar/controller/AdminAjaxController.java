@@ -34,7 +34,7 @@ public class AdminAjaxController {
     @ResponseBody
     @RequestMapping(value = "/delete_item", method = RequestMethod.POST)
     public boolean deleteItem(@RequestParam("id") Integer id) {
-       return itemService.deleteItemById(id);
+        return itemService.deleteItemById(id);
     }
 
 }

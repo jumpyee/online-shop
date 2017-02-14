@@ -2,18 +2,25 @@ package com.sombra.stoliar.dao.impl;
 
 
 import com.sombra.stoliar.dao.UserDao;
+import com.sombra.stoliar.entity.Item;
 import com.sombra.stoliar.entity.User;
+import com.sombra.stoliar.service.ItemService;
+import com.sombra.stoliar.service.UserService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class UserDaoImpl implements UserDao {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    private ItemService itemService;
 
     @Override
     public User persist(User user) {
@@ -44,6 +51,19 @@ public class UserDaoImpl implements UserDao {
     public List<User> findAllUsers() {
         return sessionFactory.getCurrentSession().createNamedQuery("findAllUsers", User.class).list();
     }
+
+    @Override
+    public User updateUser(User user) {
+        sessionFactory.getCurrentSession().update(user);
+        return user;
+    }
+
+    @Override
+    public Map<Item, Integer> findCartByUser(User user) {
+        return user.getCart();
+    }
+
+
 
 
 }

@@ -3,6 +3,7 @@ package com.sombra.stoliar.controller;
 
 import com.sombra.stoliar.entity.CategoryPool;
 import com.sombra.stoliar.entity.Item;
+import com.sombra.stoliar.entity.User;
 import com.sombra.stoliar.service.CategoryPoolService;
 import com.sombra.stoliar.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/")
@@ -35,12 +38,12 @@ public class HomeController {
     public String homePage(@RequestParam(value = "category", required = false) String category,
                            @RequestParam(value = "group", required = false) String group, Model model) {
         List<Item> items;
-        if (category != null && group !=null) {
-            items = itemService.findItemsByCategoryAndGroup(category,group);
+        if (category != null && group != null) {
+            items = itemService.findItemsByCategoryAndGroup(category, group);
         } else {
             items = itemService.findAllItems();
         }
-        model.addAttribute("allItems",items);
+        model.addAttribute("allItems", items);
         return "home/home";
     }
 

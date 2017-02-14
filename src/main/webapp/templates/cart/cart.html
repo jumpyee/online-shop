@@ -11,5 +11,54 @@
     </div>
 </div>
 
+<div class="container">
+    <table id="cart" class="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th style="width:50%">Product</th>
+            <th style="width:10%">Price</th>
+            <th style="width:8%">Quantity</th>
+            <th style="width:22%" class="text-center">Subtotal</th>
+            <th style="width:10%"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="cartItemContainer" th:each="item: ${session.authenticatedUser.cart}">
+            <td  data-th="Product">
+                <div class="row" >
+                    <div class="col-sm-2 hidden-xs"><img th:src="@{${item.key.imageReference}}" alt="Image not found" class="img-responsive"/></div>
+                    <div class="col-sm-10">
+                        <h4 class="nomargin" th:text="${item.key.name}">Product 1</h4>
+                        <p th:text="${item.key.description}">Description</p>
+                    </div>
+                </div>
+            </td>
+            <td data-th="Price"  class="itemPrice" th:text="'$'+${item.key.price}" >Price</td>
+            <td data-th="Quantity">
+                <input type="number" name ="amount" class="form-control text-center quantity" th:value="${item.value}">
+            </td>
+            <td data-th="Subtotal" class="text-center itemSubtotalPrice"  th:text="${item.key.price * item.value}">Subtotal</td>
+            <td class="actions" data-th="" id="actionsContainer">
+                <a class="btn btn-info btn-sm glyphicon glyphicon-refresh" id="refreshItemButton"></a>
+                <input type="hidden" th:value="${item.key.id}" name="id"/>
+                <input type="hidden" th:value="${session.authenticatedUser.email}" name="email"/>
+                <a class="btn btn-danger btn-sm glyphicon glyphicon-trash" id="removeItemButton"></a>
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr class="visible-xs">
+            <td class="text-center"><strong></strong></td>
+        </tr>
+        <tr>
+            <td><a href="/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center" id="totalPrice"><strong>Total</strong></td>
+            <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<script src="cart.js" th:src="@{/templates/cart/cart.js}"></script>
 </body>
 </html>

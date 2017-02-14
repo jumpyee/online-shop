@@ -1,19 +1,19 @@
-body{
-    padding:20px 20px;
+body {
+    padding: 20px 20px;
 }
 
 .results tr[visible='false'],
-.no-result{
-    display:none;
+.no-result {
+    display: none;
 }
 
-.results tr[visible='true']{
-    display:table-row;
+.results tr[visible='true'] {
+    display: table-row;
 }
 
-.counter{
-    padding:8px;
-    color:#ccc;
+.counter {
+    padding: 8px;
+    color: #ccc;
 }
 
 

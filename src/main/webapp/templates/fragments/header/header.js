@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#headerRegistrationButton').click(function () {
-$('#registrationModal').modal('show');
+        $('#registrationModal').modal('show');
     })
 });
 
@@ -9,3 +9,4 @@ $(document).ready(function () {
         $('#loginModal').modal('show');
     })
 });
+

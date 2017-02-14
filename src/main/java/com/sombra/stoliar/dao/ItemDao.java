@@ -12,11 +12,9 @@ public interface ItemDao {
     List<Item> findAllItems();
 
 
-
     List<Item> findItemsByCategoryAndGroup(String category, String group);
 
     Item findItemById(Integer id);
-
 
 
     void deleteItem(Item item);
