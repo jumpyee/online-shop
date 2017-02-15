@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" th:href="@{/templates/item/item.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/templates/modify-item/item.css}"/>
 <head th:replace="fragments/head/head :: head">
-    <title id="pageTitle">Home</title>
+    <title id="pageTitle">Item modify</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -75,9 +75,12 @@
             </div>
         </div>
     </div>
-
 </div>
-<script th:src="@{/templates/item/item.js}"></script>
-
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/footer/footer :: footer"></div>
+    </div>
+</div>
+<script th:src="@{/templates/modify-item/item.js}"></script>
 </body>
 </html>

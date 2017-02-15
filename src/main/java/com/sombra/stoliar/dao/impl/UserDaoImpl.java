@@ -5,7 +5,6 @@ import com.sombra.stoliar.dao.UserDao;
 import com.sombra.stoliar.entity.Item;
 import com.sombra.stoliar.entity.User;
 import com.sombra.stoliar.service.ItemService;
-import com.sombra.stoliar.service.UserService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -63,7 +62,10 @@ public class UserDaoImpl implements UserDao {
         return user.getCart();
     }
 
-
+//@Override
+//    public boolean deleteItemFromUserCart (Item item) {
+//        return
+//}
 
 
 }

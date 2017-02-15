@@ -12,7 +12,11 @@ public interface ItemDao {
     List<Item> findAllItems();
 
 
+    List<Item> findItemsByQuery(String query);
+
     List<Item> findItemsByCategoryAndGroup(String category, String group);
+
+    List<Item> findItemsByCategoryAndGroupAndQuery(String category, String group, String query);
 
     Item findItemById(Integer id);
 

@@ -9,10 +9,14 @@ body {
 }
 
 .navigation {
-    font-size: 17px;
+    font-size: 19px;
 
 }
 
+#rightNavbar a {
+    color: #FBFEFF
+}
+
 #headerNavbar {
-    background: #000000;
+    background: #282C2F;
 }

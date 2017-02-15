@@ -21,5 +21,4 @@ public interface UserDao {
     Map<Item, Integer> findCartByUser(User user);
 
 
-
 }

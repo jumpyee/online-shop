@@ -18,4 +18,8 @@ public interface ItemService {
     Item findItemById(Integer id);
 
     boolean deleteItemById(Integer id);
+
+    List<Item> findItemsByQuery(String query);
+
+    List<Item> findItemsByCategoryAndGroupAndQuery(String category, String group, String query);
 }

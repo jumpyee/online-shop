@@ -58,5 +58,28 @@ $(document).ready(function () {
         }
     });
 
+    $('.refresh-button').click(function (e) {
+        e.preventDefault();
+        debugger;
+        var $button = $(this);
+        var $buyOrderContainer = $button.closest('.orderContainer');
+        var id = $buyOrderContainer.find('input[name="id"]').val();
+        var status = $buyOrderContainer.find('input[name="status"]').val();
+
+        $.ajax({
+            url: '/async/order/change_status',
+            type: 'POST',
+            data: {
+                id: id,
+                status: status,
+            },
+            success: function (res) {
+                if (res) {
+                    alert("jhgj")
+                }
+            }
+        });
+    });
+
 
 });

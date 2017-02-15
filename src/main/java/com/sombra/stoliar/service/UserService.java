@@ -25,7 +25,7 @@ UserService {
 
     User updateUser(User user);
 
-    Map<Item,Integer> findCartByUser(String email);
+    Map<Item, Integer> findCartByUser(String email);
 
 
 }

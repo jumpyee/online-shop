@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" th:href="@{/templates/item/item.css}"/>
 <head th:replace="fragments/head/head :: head">
-    <title id="pageTitle">Home</title>
+    <title id="pageTitle">Item</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -28,13 +28,20 @@
             <p th:text="${item.description}"></p>
             <h4>Price</h4>
             <p th:text="'$'+${item.price}"></p>
-            <button type="button" th:onclick="@{/async/user/item/add_to_cart}" class="btn" id="addToCartButton">Add to cart</button>
+            <button type="button" th:onclick="@{/async/user/item/add_to_cart}" class="btn" id="addToCartButton">Add to
+                cart
+            </button>
             <input type="hidden" th:value="${item.id}" name="id"/>
-            <input type="hidden" th:if="${session.authenticatedUser!= null}" th:value="${session.authenticatedUser.email}" name="email"/>
+            <input type="hidden" th:if="${session.authenticatedUser!= null}"
+                   th:value="${session.authenticatedUser.email}" name="email"/>
         </div>
     </div>
 </div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/footer/footer :: footer"></div>
+    </div>
+</div>
 <script th:src="@{/templates/item/item.js}"></script>
-
 </body>
 </html>

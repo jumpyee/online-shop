@@ -2,6 +2,10 @@
     vertical-align: middle;
 }
 
+.container {
+    padding-bottom: 70px;
+}
+
 @media screen and (max-width: 600px) {
     table#cart tbody td .form-control {
         width: 20%;
@@ -52,4 +56,3 @@
     }
 
 }
-

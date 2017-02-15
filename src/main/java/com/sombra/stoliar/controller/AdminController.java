@@ -1,9 +1,6 @@
 package com.sombra.stoliar.controller;
 
-import com.sombra.stoliar.entity.Category;
-import com.sombra.stoliar.entity.CategoryPool;
-import com.sombra.stoliar.entity.Item;
-import com.sombra.stoliar.entity.User;
+import com.sombra.stoliar.entity.*;
 import com.sombra.stoliar.model.CategoryForm;
 import com.sombra.stoliar.model.CategoryPoolForm;
 import com.sombra.stoliar.model.ItemForm;
@@ -38,11 +35,19 @@ public class AdminController {
     private ItemService itemService;
 
     @Autowired
+    private BuyOrderService buyOrderService;
+
+    @Autowired
     private CategoryPoolService categoryPoolService;
 
     @ModelAttribute("allUsers")
     public List<User> getAllUsers() {
         return userService.findAllUsers();
+    }
+
+    @ModelAttribute("allBuyOrders")
+    public List<BuyOrder> getAllBuyOrders() {
+        return buyOrderService.findAllBuyOrders();
     }
 
     @ModelAttribute("allCategoryPools")

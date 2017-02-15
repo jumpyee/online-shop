@@ -101,13 +101,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<Item,Integer> findCartByUser(String email) {
+    public Map<Item, Integer> findCartByUser(String email) {
         return userDao.findCartByUser(userDao.findUserByEmail(email));
     }
-
-
-
-
 
 
 }

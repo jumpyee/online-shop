@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/templates/order/order.css}"/>
+<head th:replace="fragments/head/head :: head">
+    <title id="pageTitle">Order</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/header/header :: header"></div>
+    </div>
+</div>
+
+<div class="container">
+    <table class="table cart table-condensed">
+        <thead>
+        <tr>
+            <th style="width:50%">Product</th>
+            <th style="width:10%">Price</th>
+            <th style="width:8%" class="text-center">Quantity</th>
+            <th style="width:22%" class="text-center">Subtotal</th>
+            <th style="width:10%"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <h2 style="float: left" th:text="'Order #'+${order.id}"></h2>
+        <h3 style="float: right" th:text="${order.status}"></h3>
+        <tr id="orderItemContainer" th:each="item: ${order.orderedItems}">
+            <td data-th="Product">
+                <div class="row">
+                    <div class="col-sm-2 hidden-xs"><img th:src="@{${item.imageReference}}" alt="Image not found"
+                                                         class="img-responsive"/></div>
+                    <div class="col-sm-10">
+                        <h4 class="nomargin" th:text="${item.name}">Product 1</h4>
+                        <p th:text="${item.description}">Description</p>
+                    </div>
+                </div>
+            </td>
+            <td data-th="Price" class="itemPrice" th:text="'$'+${item.price}">Price</td>
+            <td data-th="Quantity" class="text-center" th:text="${item.amount}"></td>
+            <td data-th="Subtotal" class="text-center itemSubtotalPrice" th:text="${item.price * item.amount}">
+                Subtotal
+            </td>
+            <td class="actions" data-th="" id="actionsContainer">
+
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr class="visible-xs">
+            <td class="text-center"><strong></strong></td>
+        </tr>
+        <tr>
+            <td><a href="/user/orders" class="btn btn-warning"><i class="fa fa-angle-left"></i>Back</a></td>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center" id="totalPrice"><strong>Total</strong></td>
+            <td>
+                <input type="hidden" th:value="${order.id}" name="id"/>
+                <a href="#" class="btn btn-danger btn-block" id="cancelOrderButton">Cancel Order<i
+                        class="fa fa-angle-right"></i></a></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/footer/footer :: footer"></div>
+    </div>
+</div>
+<script src="order.js" th:src="@{/templates/order/order.js}"></script>
+</body>
+</html>

@@ -16,7 +16,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.*;
 
 
 @Controller
@@ -67,22 +66,21 @@ public class UserAjaxController {
     }
 
     @ResponseBody
-    @RequestMapping(path = "/item/add_to_cart",method = RequestMethod.POST)
-    public boolean addItemToCart (@RequestParam("id") Integer id, @RequestParam("email") String email) {
-        User user =userService.findUserByEmail(email);
+    @RequestMapping(path = "/item/add_to_cart", method = RequestMethod.POST)
+    public boolean addItemToCart(@RequestParam("id") Integer id, @RequestParam("email") String email) {
+        User user = userService.findUserByEmail(email);
         Item item = itemService.findItemById(id);
 
         Integer amount = user.getCart().get(item);
-        if (amount==null) {
-            user.getCart().put(item,1);
-        } else  {
+        if (amount == null) {
+            user.getCart().put(item, 1);
+        } else {
 
-            user.getCart().put(item,amount+1);
+            user.getCart().put(item, amount + 1);
         }
         userService.updateUser(user);
         session.setAttribute("authenticatedUser", user);
         return true;
-
     }
 
 }

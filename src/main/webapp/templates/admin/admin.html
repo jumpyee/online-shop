@@ -9,13 +9,14 @@
     <div class="row">
         <div th:replace="fragments/header/header :: header"></div>
     </div>
-    <div class="row" th:if="${session.authenticatedAdmin!= null}">
+    <div class="row">
         <div class="col-sm-2">
             <ul id="adminPageTabs" class="nav nav-tabs nav-stacked">
                 <li th:classappend="${addGroupTab}? active"><a href="#addGroupTab">Add group</a></li>
                 <li th:classappend="${addCategoryTab}? active"><a href="#addCategoryTab">Add category</a></li>
                 <li th:classappend="${addItemTab}? active"><a href="#addItemTab">Add item</a></li>
                 <li th:classappend="${userControlTab}? active"><a href="#userControlTab">User control</a></li>
+                <li th:classappend="${ordersControlTab}? active"><a href="#ordersControlTab">Orders</a></li>
             </ul>
         </div>
 
@@ -102,7 +103,7 @@
 
                 <div class="tab-pane" id="userControlTab" th:classappend="${userControlTab}? active">
                     <div class="form-group pull-left">
-                        <input type="text" class="search form-control" placeholder="What you looking for?">
+                        <input type="text" class="search form-control" placeholder="Who are you looking for?">
                     </div>
                     <span class="counter pull-left"></span>
                     <table class="table table-hover table-bordered results">
@@ -136,9 +137,52 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="tab-pane" id="ordersControlTab" th:classappend="${ordersControlTab}? active">
+                    <span class="counter pull-left"></span>
+                    <table class="table table-hover table-bordered results">
+                        <thead>
+                        <tr>
+                            <th class="col-sm-2">Customer</th>
+                            <th class="col-sm-2">Phone number</th>
+                            <th class="col-sm-2">Email</th>
+                            <th class="col-sm-1">Id</th>
+                            <th class="col-sm-1">Price</th>
+                            <th class="col-sm-2">Date</th>
+                            <th class="col-sm-3">Status</th>
+                            <th class="col-sm-1">Update</th>
+                        </tr>
+                        <tr class="warning no-result">
+                            <td colspan="4"><i class="fa fa-warning"></i>No result</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="orderContainer" th:each="order : ${allBuyOrders}">
+                            <td th:text="${order.user.name +' '+ order.user.surname}">Customer</td>
+                            <td th:text="${order.user.phoneNumber}">Phone number</td>
+                            <td class="email" th:text="${order.user.email}">Email</td>
+                            <td th:text="${order.id}">Order id</td>
+                            <td th:text="${order.totalPrice}">Price</td>
+                            <td th:text="${order.date}">Date</td>
+                            <td><input type="text" th:value="${order.status}" name="status">
+                                <input type="hidden" th:value="${order.id}" name="id"></td>
+                            <td>
+                                <button type="button"
+                                        class="btn btn-info btn-sm glyphicon glyphicon-refresh refresh-button"></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <script src="admin.js" th:src="@{/templates/admin/admin.js}"></script>
+
     </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/footer/footer :: footer"></div>
+    </div>
+</div>
+<script src="admin.js" th:src="@{/templates/admin/admin.js}"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@ import com.sombra.stoliar.model.UserRegistrationForm;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @NamedQueries({
@@ -19,7 +20,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-
     private String name;
     private String surname;
     private String password;
@@ -28,14 +28,14 @@ public class User {
     private String phoneNumber;
     private boolean isBanned = false;
     private String role;
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<BuyOrder> orders;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_cart",joinColumns = @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "user_cart", joinColumns = @JoinColumn(name = "user_id"))
     @MapKeyJoinColumn(name = "item_id")
     @Column(name = "item_amount")
     private Map<Item, Integer> cart = new HashMap<>();
-
 
 
     public User() {
@@ -122,5 +122,11 @@ public class User {
         isBanned = banned;
     }
 
+    public List<BuyOrder> getOrders() {
+        return orders;
+    }
 
+    public void setOrders(List<BuyOrder> orders) {
+        this.orders = orders;
+    }
 }

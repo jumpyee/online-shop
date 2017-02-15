@@ -32,9 +32,21 @@ public class ItemDaoImpl implements ItemDao {
     }
 
     @Override
+    public List<Item> findItemsByQuery(String query) {
+        return sessionFactory.getCurrentSession().createNamedQuery("findItemsByQuery", Item.class).setParameter("query", query)
+                .list();
+    }
+
+    @Override
     public List<Item> findItemsByCategoryAndGroup(String category, String group) {
         return sessionFactory.getCurrentSession().createNamedQuery("findItemsByCategoryAndGroup", Item.class).setParameter("categoryName", category).setParameter("groupName", group)
                 .list();
+    }
+
+    @Override
+    public List<Item> findItemsByCategoryAndGroupAndQuery(String category, String group, String query) {
+        return sessionFactory.getCurrentSession().createNamedQuery("findItemsByCategoryAndGroupAndQuery", Item.class).setParameter("categoryName", category).setParameter("groupName", group)
+                .setParameter("query", query).list();
     }
 
     @Override

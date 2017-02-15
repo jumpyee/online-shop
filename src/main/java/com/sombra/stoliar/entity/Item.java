@@ -2,13 +2,13 @@ package com.sombra.stoliar.entity;
 
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 
 @NamedQueries({
+        @NamedQuery(name = "findItemsByQuery", query = "select i from Item i where i.name like concat('%', :query, '%')"),
         @NamedQuery(name = "findItemsByCategoryAndGroup", query = "select i from Item i where i.category.name= :categoryName and i.category.categoryPool.name= :groupName"),
+        @NamedQuery(name = "findItemsByCategoryAndGroupAndQuery", query = "select i from Item i where i.category.name= :categoryName and i.category.categoryPool.name= :groupName and i.name like concat('%', :query, '%')"),
         @NamedQuery(name = "findAllItems", query = "from Item")
 })
 @Entity
@@ -29,7 +29,7 @@ public class Item {
     @CollectionTable(name = "user_cart", joinColumns = @JoinColumn(name = "item_id"))
     @MapKeyJoinColumn(name = "user_id")
     @Column(name = "item_amount")
-    private Map<User,Integer> userCarts;
+    private Map<User, Integer> userCarts;
 
     @PreRemove
     public void preDelete() {
