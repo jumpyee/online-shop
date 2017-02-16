@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head/head :: head">
+    <title id="pageTitle">Home</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/templates/home/home.css}"/>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/header/header :: header"></div>
+    </div>
+</div>
+
+
+<!-- Page Content -->
+<div class="container-fluid">
+    <div class="col-md-2" id="categoryNavigation">
+        <div class=" navbar-default navbar-fixed-left ">
+            <a class="navbar-brand" href="#">Categories</a>
+            <ul class="nav navbar-nav my-nav">
+                <li class="dropdown" th:each="group: ${allCategoryPools}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                            th:text="${group.name}"></span><span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li th:each="cat : ${group.categories}"><a th:href="'?group='+${cat.categoryPool.name}+
+                        '&category='+${cat.name}+${query!=null?'&query='+query:''}" th:text="${cat.name}">Category</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="col-md-10" >
+        <p id="welcomeText">Welcome to Sombra Shop!</p>
+        <div class="col-md-12" id="itemContainer">
+            <div class="card pull-left" th:each="item : ${allItems}">
+                <img class="card-img-top img-responsive center-block" th:src="@{${item.imageReference}}"
+                     alt="Card image cap">
+                <div class="card-block">
+                    <a th:href="'item/'+${item.id}">
+                        <h5 th:text="${item.name}" style="display: inline-block" class="card-title">Card title</h5>
+                        <h6 th:text="'$'+${item.price}" class="item-price">Card title</h6>
+                    </a>
+                    <p th:text="${item.description}" class="card-text">Short description of a lot </p>
+                    <div th:if="${session.authenticatedUser!=null} and ${session.authenticatedUser.role== 'admin'}"
+                         th:remove="tag">
+                        <input type="hidden" th:value="${item.id}" name="id"/>
+                        <a class="btn btn-danger" id="deleteItemButton">Delete</a>
+                        <a th:href="'user/admin/modify_item/'+${item.id}" class="btn btn-warning"
+                           id="modifyItemButton">Modify</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/footer/footer :: footer"></div>
+    </div>
+</div>
+<script src="home.js" th:src="@{/templates/home/home.js}"></script>
+</body>
+</html>

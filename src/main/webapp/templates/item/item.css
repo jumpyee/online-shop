@@ -1,0 +1,16 @@
+.container {
+    padding-bottom: 70px;
+}
+
+h1 .page-header {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.thumbnail {
+    height: 500px;
+    width: 500px;
+
+}
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/templates/item/item.css}"/>
+<head th:replace="fragments/head/head :: head">
+    <title id="pageTitle">Item</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/header/header :: header"></div>
+    </div>
+</div>
+
+<div class="container" id="itemContainer">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 th:text="${item.name}" class="page">Name
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="thumbnail">
+                <img th:src="@{${item.imageReference}}" alt="Image not found"></div>
+        </div>
+        <div class="col-md-6" id="itemInfoContainer">
+            <h3>Description</h3>
+            <p th:text="${item.description}"></p>
+            <h4>Price</h4>
+            <p th:text="'$'+${item.price}"></p>
+            <button  type="button"  th:onclick="@{/async/user/item/add_to_cart}" class="btn" id="addToCartButton">Add to
+                cart
+            </button>
+            <div class="alert alert-success" style="width: 116px" id="successAlert">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <strong >Added to cart</strong>
+            </div>
+            <div class="alert alert-danger" style="width: 116px" id="dangerAlert">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <strong >Please login</strong>
+            </div>
+            <input type="hidden" th:value="${item.id}" name="id"/>
+            <input type="hidden" th:if="${session.authenticatedUser!= null}"
+                   th:value="${session.authenticatedUser.email}" name="email"/>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/footer/footer :: footer"></div>
+    </div>
+</div>
+<script th:src="@{/templates/item/item.js}"></script>
+</body>
+</html>

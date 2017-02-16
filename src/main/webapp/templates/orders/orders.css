@@ -1,0 +1,22 @@
+
+.results tr[visible='false'],
+.no-result {
+    display: none;
+}
+
+.results tr[visible='true'] {
+    display: table-row;
+}
+
+.counter {
+    padding: 8px;
+    color: #ccc;
+}
+
+.order td a {
+    color:#0c7cd5;
+}
+
+.order:last-of-type td a {
+    color: blueviolet;
+}

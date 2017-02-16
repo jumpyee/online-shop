@@ -1,0 +1,87 @@
+body {
+    padding-bottom: 50px;
+}
+
+.navbar-fixed-left {
+    width: 240px;
+    position: fixed;
+    border-radius: 0;
+
+}
+
+.navbar-fixed-left .navbar-nav > li {
+    float: left;
+    width: 139px;
+}
+
+.navbar-fixed-left + .container {
+    padding-left: 160px;
+}
+
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+    margin-top: -50px;
+    margin-left: 140px;
+}
+
+#categoryNavigation {
+    font-size: larger;
+    padding-left: 0px;
+    padding-top: 0px;
+}
+
+#itemContainer {
+    padding-left: 5px;
+
+}
+
+.card {
+
+    max-width: 240px;
+    padding: 15px;
+    margin: 5px;
+    border: solid 1px lightgray;
+    /*margin: 10px;*/
+    border-radius: 20px;
+    width: 30rem;
+    box-shadow: 5px 5px 5px 0 darkgrey;
+
+}
+
+.card .card-img-top {
+    max-height: 125px;
+    min-height: 125px;
+
+}
+
+.card .card-text {
+    max-height: 50px;
+    min-height: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.item-price {
+    float: right;
+    display: inline-block;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#welcomeText {
+    font-size: 110px;
+    text-align: center;
+    font-family: Calibri;
+    margin-bottom: 0px;
+
+}
+
+.my-nav > li > a {
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+}
+
