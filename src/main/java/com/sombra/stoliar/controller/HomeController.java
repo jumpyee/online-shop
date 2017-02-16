@@ -34,7 +34,8 @@ public class HomeController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String homePage(@RequestParam(value = "category", required = false) String category,
                            @RequestParam(value = "group", required = false) String group,
-                           @RequestParam(value = "query", required = false) String query, Model model) {
+                           @RequestParam(value = "query", required = false) String query,
+                           Model model) {
         List<Item> items;
         boolean categoryPresent = category != null && group != null;
         boolean queryPresent = query != null;
@@ -57,6 +58,26 @@ public class HomeController {
 
         model.addAttribute("allItems", items);
         return "home/home";
+    }
+
+    @RequestMapping("/403")
+    public String accessDeniedPage () {
+        return "filter/403/403";
+    }
+
+    @RequestMapping("/authorize")
+    public String notAuthorizedPage () {
+        return "filter/not-authorized/not-authorized";
+    }
+
+    @RequestMapping("/404")
+    public String noSuchPagePage () {
+        return "filter/404/404";
+    }
+
+    @RequestMapping("/banned")
+    public  String userBannedPage () {
+        return "filter/banned/banned";
     }
 
 

@@ -62,10 +62,6 @@ public class UserDaoImpl implements UserDao {
         return user.getCart();
     }
 
-//@Override
-//    public boolean deleteItemFromUserCart (Item item) {
-//        return
-//}
 
 
 }

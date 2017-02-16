@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/templates/filter/not-authorized/not-authorized.css}"/>
+<head th:replace="fragments/head/head :: head">
+    <title id="pageTitle">Not logged in</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/header/header :: header"></div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12" id="notAuthorizedPage"><h2><span>Access denied!</span> You need to authorize. </h2>
+            <div class="image-wrapper"><img th:src="@{/images/static/penguin.png}"></div>
+            <h1><a href="/">Home</a></h1></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/footer/footer :: footer"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -6,8 +6,7 @@ import com.sombra.stoliar.entity.User;
 import java.util.List;
 import java.util.Map;
 
-public interface
-UserService {
+public interface UserService {
 
     User findUserByEmail(String email);
 
@@ -26,6 +25,4 @@ UserService {
     User updateUser(User user);
 
     Map<Item, Integer> findCartByUser(String email);
-
-
 }

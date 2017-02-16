@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/templates/filter/404/404.css}"/>
+<head th:replace="fragments/head/head :: head">
+    <title id="pageTitle">Page not found</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/header/header :: header"></div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12" id="page404"><h2> There is no such page!  </h2>
+        <div class="image-wrapper"><img th:src="@{/images/static/penguin.png}"></div>
+            <h1><a href="/">Home</a></h1></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/footer/footer :: footer"></div>
+    </div>
+</div>
+</body>
+</html>

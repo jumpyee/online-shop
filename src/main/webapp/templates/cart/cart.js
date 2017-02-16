@@ -75,7 +75,7 @@ $(document).ready(function () {
             },
             success: function (res) {
                 if (res) {
-                    location.href = "/user/orders/";
+                    location.href = "/user/order";
                 }
             }
         });

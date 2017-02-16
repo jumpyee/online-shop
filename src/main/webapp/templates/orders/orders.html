@@ -32,10 +32,10 @@
                 <tbody>
 
                 <tr class="order" th:each="order : ${session.authenticatedUser.orders}">
-                    <td><a th:text="'#'+${order.id}" th:href="'orders/'+${order.id}">Id</a></td>
-                    <td><a th:text="'$'+${order.totalPrice}" th:href="'orders/'+${order.id}">Total price</a></td>
-                    <td><a th:text="${order.date}" th:href="'orders/'+${order.id}">Date</a></td>
-                    <td><a th:text="${order.status}" th:href="'orders/'+${order.id}">Status</a></td>
+                    <td><a th:text="'#'+${order.id}" th:href="'/user/order/'+${order.id}">Id</a></td>
+                    <td><a th:text="'$'+${order.totalPrice}" th:href="'/user/order/'+${order.id}">Total price</a></td>
+                    <td><a th:text="${order.date}" th:href="'/user/order/'+${order.id}">Date</a></td>
+                    <td><a th:text="${order.status}" th:href="'/user/order/'+${order.id}">Status</a></td>
                 </tr>
                 </tbody>
 

@@ -18,15 +18,13 @@ $(document).ready(function () {
         var $button = $(this);
         var $itemContainer = $button.closest('.cart');
         var id = $itemContainer.find('input[name="id"]').val();
-        debugger;
-
         $.ajax({
             url: '/async/order/delete_order',
             type: 'POST',
             data: {id: id},
             success: function (res) {
                 if (res) {
-                    alert("dfgdf")
+                    location.href = "/user/order/";
                 }
             }
         });

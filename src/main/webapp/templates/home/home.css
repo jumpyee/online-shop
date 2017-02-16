@@ -1,3 +1,7 @@
+body {
+    padding-bottom: 50px;
+}
+
 .navbar-fixed-left {
     width: 240px;
     position: fixed;
@@ -6,7 +10,7 @@
 }
 
 .navbar-fixed-left .navbar-nav > li {
-    float: left; /* Cancel default li float: left */
+    float: left;
     width: 139px;
 }
 
@@ -14,7 +18,6 @@
     padding-left: 160px;
 }
 
-/* On using dropdown menu (To right shift popuped) */
 .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
     margin-top: -50px;
     margin-left: 140px;
@@ -26,10 +29,6 @@
     padding-top: 0px;
 }
 
-#categoryNavigation a.navbar-brand {
-
-}
-
 #itemContainer {
     padding-left: 5px;
 
@@ -37,11 +36,11 @@
 
 .card {
 
-    max-width: 250px;
+    max-width: 240px;
     padding: 15px;
     margin: 5px;
     border: solid 1px lightgray;
-    margin: 10px;
+    /*margin: 10px;*/
     border-radius: 20px;
     width: 30rem;
     box-shadow: 5px 5px 5px 0 darkgrey;
@@ -50,6 +49,7 @@
 
 .card .card-img-top {
     max-height: 125px;
+    min-height: 125px;
 
 }
 
@@ -69,5 +69,19 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+#welcomeText {
+    font-size: 110px;
+    text-align: center;
+    font-family: Calibri;
+    margin-bottom: 0px;
+
+}
+
+.my-nav > li > a {
+    padding-top: 2px;
+    padding-bottom: 2px;
+
 }
 

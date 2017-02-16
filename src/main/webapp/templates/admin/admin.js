@@ -73,11 +73,7 @@ $(document).ready(function () {
                 id: id,
                 status: status,
             },
-            success: function (res) {
-                if (res) {
-                    alert("jhgj")
-                }
-            }
+
         });
     });
 

@@ -1,0 +1,23 @@
+#accessDeniedPage h2 span{
+    color:#c12e2a;
+    text-align: center;
+}
+
+#accessDeniedPage h2 {
+    text-align: center;
+}
+
+#accessDeniedPage h1 {
+    text-align: center;
+    color: #FBFEFF;
+}
+
+.image-wrapper {
+    text-align: center;
+}
+ img {
+    display: inline-block;
+    height: 400px;
+     margin-bottom: 70px;
+     margin-top: 70px;
+}

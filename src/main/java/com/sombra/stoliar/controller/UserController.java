@@ -22,6 +22,8 @@ public class UserController {
         userService.logoutUser();
         return "redirect:/";
     }
+
+
 }
 
 

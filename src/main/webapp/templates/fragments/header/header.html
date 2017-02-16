@@ -32,7 +32,7 @@
                         <li th:if="${session.authenticatedUser.role!='admin'}" id="cart">
                             <a class="glyphicon glyphicon-shopping-cart" id="userCart" th:href="@{/user/cart}"></a></li>
                         <li id="userEmail"><a href="#" th:text="${session.authenticatedUser.email}"></a></li>
-                        <li th:if="${session.authenticatedUser.role!='admin'}" id="myOrder"><a href="/user/orders"> My
+                        <li th:if="${session.authenticatedUser.role!='admin'}" id="myOrder"><a href="/user/order"> My
                             orders</a></li>
                         <li id="logout"><a href="/user/logout">Logout</a></li>
                         <div th:if="${session.authenticatedUser.role=='admin'}" th:remove="tag">
