@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,7 +36,13 @@ public class HomeController {
     public String homePage(@RequestParam(value = "category", required = false) String category,
                            @RequestParam(value = "group", required = false) String group,
                            @RequestParam(value = "query", required = false) String query,
+                           @RequestParam(value = "page", required = false) Integer page,
                            Model model) {
+        if (page == null) {
+            page = 1;
+        }
+        int itemsOnPage = 5;
+
         List<Item> items;
         boolean categoryPresent = category != null && group != null;
         boolean queryPresent = query != null;
@@ -55,28 +62,35 @@ public class HomeController {
         } else {
             items = itemService.findAllItems();
         }
-
+        int pageAmount = (items.size() + itemsOnPage - 1) / itemsOnPage;
+        items = itemService.getPagedItems(items, page, itemsOnPage);
+        List<Integer> pages = new ArrayList<>();
+        for (int i = 1; i < pageAmount+1; i++) {
+            pages.add(i);
+        }
+        model.addAttribute("pages", pages);
+        model.addAttribute("currentPage", page);
         model.addAttribute("allItems", items);
         return "home/home";
     }
 
     @RequestMapping("/403")
-    public String accessDeniedPage () {
+    public String accessDeniedPage() {
         return "filter/403/403";
     }
 
     @RequestMapping("/authorize")
-    public String notAuthorizedPage () {
+    public String notAuthorizedPage() {
         return "filter/not-authorized/not-authorized";
     }
 
     @RequestMapping("/404")
-    public String noSuchPagePage () {
+    public String noSuchPagePage() {
         return "filter/404/404";
     }
 
     @RequestMapping("/banned")
-    public  String userBannedPage () {
+    public String userBannedPage() {
         return "filter/banned/banned";
     }
 
