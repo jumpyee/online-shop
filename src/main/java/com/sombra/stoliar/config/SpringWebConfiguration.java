@@ -19,7 +19,7 @@ import java.util.Collections;
 
 @Configuration
 @EnableWebMvc
-public class SpringWebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 //    private UserService userService;

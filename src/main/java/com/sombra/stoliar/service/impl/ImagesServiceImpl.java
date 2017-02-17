@@ -1,31 +1,34 @@
 package com.sombra.stoliar.service.impl;
 
+import ch.qos.logback.classic.Logger;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.sombra.stoliar.service.ImagesService;
-import org.springframework.beans.factory.annotation.Value;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.util.Map;
 
 @Service
 public class ImagesServiceImpl implements ImagesService {
 
-    @Value("${app.upload.images.location}")
-    private String imagesPath;
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(ImagesServiceImpl.class);
+
+    @Autowired
+    private Cloudinary cloudinary;
 
     @Override
     public String saveImage(MultipartFile multipartFile) {
+        String url = null;
         try {
-            byte[] bytes = multipartFile.getBytes();
-            Path imagesDir = Paths.get(imagesPath);
-            Path imagePath = Files.createTempFile(imagesDir, "item_", "");
-            Files.write(imagePath, bytes);
-            return imagePath.getFileName().toString();
-        } catch (Exception e) {
-            //log this
+            Map result = cloudinary.uploader().upload(multipartFile.getBytes(), ObjectUtils.emptyMap());
+            url = (String) result.get("url");
+        } catch (IOException e) {
+            logger.error("Fail to upload image to cloudinary", e);
         }
-        return null;
+        return url;
     }
 }
