@@ -67,7 +67,10 @@ public class UserAjaxController {
 
     @ResponseBody
     @RequestMapping(path = "/item/add_to_cart", method = RequestMethod.POST)
-    public boolean addItemToCart(@RequestParam("id") Integer id, @RequestParam("email") String email) {
+    public boolean addItemToCart(@RequestParam("id") Integer id, @RequestParam(value = "email", required = false) String email) {
+        if (email == null) {
+            return false;
+        }
         User user = userService.findUserByEmail(email);
         Item item = itemService.findItemById(id);
 

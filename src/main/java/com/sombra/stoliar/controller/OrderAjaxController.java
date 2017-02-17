@@ -6,7 +6,6 @@ import com.sombra.stoliar.entity.Item;
 import com.sombra.stoliar.entity.OrderedItem;
 import com.sombra.stoliar.entity.User;
 import com.sombra.stoliar.service.BuyOrderService;
-import com.sombra.stoliar.service.DateService;
 import com.sombra.stoliar.service.OrderedItemService;
 import com.sombra.stoliar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,8 +25,6 @@ import java.util.Set;
 @RequestMapping("/async/order")
 public class OrderAjaxController {
 
-    @Autowired
-    private DateService dateService;
 
     @Autowired
     private BuyOrderService buyOrderService;
@@ -58,7 +56,7 @@ public class OrderAjaxController {
             orderedItems.add(orderedItem);
             totalPrice += item.getPrice() * user.getCart().get(item);
         }
-        buyOrderService.saveBuyOrder(new BuyOrder(totalPrice, dateService.currentDate(), orderedItems, user));
+        buyOrderService.saveBuyOrder(new BuyOrder(totalPrice, new Date().toString(), orderedItems, user));
         user.getCart().clear();
         userService.updateUser(user);
         session.setAttribute("authenticatedUser", userService.findUserByEmail(email));

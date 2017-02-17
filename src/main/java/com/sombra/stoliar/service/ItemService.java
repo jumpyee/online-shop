@@ -22,4 +22,6 @@ public interface ItemService {
     List<Item> findItemsByQuery(String query);
 
     List<Item> findItemsByCategoryAndGroupAndQuery(String category, String group, String query);
+
+    List<Item> getPagedItems(List<Item> items, Integer page, Integer itemsOnPage);
 }

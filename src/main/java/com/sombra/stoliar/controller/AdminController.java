@@ -113,10 +113,7 @@ public class AdminController {
         Double price = itemForm.getPrice();
         String description = itemForm.getDescription();
         Category category = categoryService.findCategoryById(itemForm.getCategoryId());
-
-        String fileName = imagesService.saveImage(itemForm.getImage());
-        String imageReference = "/images/" + fileName;
-
+        String imageReference = imagesService.saveImage(itemForm.getImage());
         itemService.saveItem(new Item(name, price, description, category, imageReference));
         return "redirect:/user/admin";
     }
@@ -149,9 +146,9 @@ public class AdminController {
         item.setCategory(category);
 
         if (!itemModifyForm.getImage().isEmpty()) {
-            String fileName = imagesService.saveImage(itemModifyForm.getImage());
+           
 
-            String imageReference = "/images/" + fileName;
+            String imageReference = imagesService.saveImage(itemModifyForm.getImage());
             item.setImageReference(imageReference);
         } else {
             item.setImageReference(itemModifyForm.getImageReference());

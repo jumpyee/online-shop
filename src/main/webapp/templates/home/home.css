@@ -1,26 +1,89 @@
 body {
-    padding-bottom: 50px;
+    padding-bottom: 20px;
+    padding-top: 64px!important;
+}
+
+.main-page-fluid-container {
+    padding-left: 0px;
 }
 
 .navbar-fixed-left {
     width: 240px;
-    position: fixed;
+    /*width: 2000px;*/
+    position: relative;
     border-radius: 0;
+}
+
+
+
+
+.dropdown-menu > li {
+    height: 47px;
+
+
+}
+.dropdown-menu > li > a {
+    height: 47px;
+
+}
+
+.dropdown-menu {
+    padding: 0px 0;
+    border-radius: 1px;
+    text-align: center;
+font-size: 15px;
 
 }
 
 .navbar-fixed-left .navbar-nav > li {
     float: left;
-    width: 139px;
+    width: 250px;
+    border-radius: 1px;
+    box-shadow: 1px 1px 1px 0 lightgray ;
+}
+
+#categoryNavigation {
+    width: 250px;
+    text-align: center;
+}
+
+#resetButton {
+    width: 250px;
+    text-align: center;
+}
+
+.navbar-fixed-left .navbar-nav > li:hover {
+    background-color: #4887CE ;
+}
+
+.dropdown-menu > li > a {
+    box-shadow: 1px 1px 1px 0 lightgray ;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #4887CE ;
+    color: white;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color: #4887CE;
+}
+
+.navbar-fixed-left .navbar-nav .dropdown :hover {
+    color: white;
+}
+
+.navbar-fixed-left .navbar-nav   .dropdown  :hover {
+    color: white;
 }
 
 .navbar-fixed-left + .container {
     padding-left: 160px;
+
 }
 
 .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-    margin-top: -50px;
-    margin-left: 140px;
+    margin-top: -47px;
+    margin-left: 251px;
 }
 
 #categoryNavigation {
@@ -30,7 +93,8 @@ body {
 }
 
 #itemContainer {
-    padding-left: 5px;
+    padding-left: 27px;
+    padding-top: 30px;
 
 }
 
@@ -40,7 +104,6 @@ body {
     padding: 15px;
     margin: 5px;
     border: solid 1px lightgray;
-    /*margin: 10px;*/
     border-radius: 20px;
     width: 30rem;
     box-shadow: 5px 5px 5px 0 darkgrey;
@@ -71,17 +134,10 @@ body {
     margin-right: auto;
 }
 
-#welcomeText {
-    font-size: 110px;
-    text-align: center;
-    font-family: Calibri;
-    margin-bottom: 0px;
-
-}
 
 .my-nav > li > a {
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 
 }
 
