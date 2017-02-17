@@ -33,7 +33,6 @@
 
 
     <div class="col-md-10" >
-        <p id="welcomeText">Welcome to Sombra Shop!</p>
         <div class="col-md-12" id="itemContainer">
             <div class="card pull-left" th:each="item : ${allItems}">
                 <img class="card-img-top img-responsive center-block" th:src="@{${item.imageReference}}"

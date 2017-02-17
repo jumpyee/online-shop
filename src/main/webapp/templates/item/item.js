@@ -17,17 +17,20 @@ $(document).ready(function () {
                 id: id,
                 email: email
             },
-            error: function () {
-                $("#dangerAlert").show();
-                window.setTimeout(function () {
-                    $("#dangerAlert").hide();
-                }, 1500);
-            },
+
             success: function (res) {
-                $("#successAlert").show();
-                window.setTimeout(function () {
-                    $("#successAlert").hide();
-                }, 1000);
+                if (res) {
+                    $("#successAlert").show();
+                    window.setTimeout(function () {
+                        $("#successAlert").hide();
+                    }, 1000);
+                } else {
+                    $("#dangerAlert").show();
+                    window.setTimeout(function () {
+                        $("#dangerAlert").hide();
+                    }, 1500);
+                }
+
             }
 
         });
