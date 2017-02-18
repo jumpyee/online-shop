@@ -48,6 +48,12 @@ a.dropdown-toggle.list-group-item {
 
 }
 
+.open > .dropdown-menu {
+    position: absolute;
+    left: 100%;
+    top: 0;
+}
+
 #categoryNavigation {
     text-align: center;
 }
@@ -109,4 +115,5 @@ a.dropdown-toggle.list-group-item {
 #paginationContainer {
     margin-left: 50px;
 }
+
 
