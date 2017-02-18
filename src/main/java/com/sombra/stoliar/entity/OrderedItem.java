@@ -13,6 +13,7 @@ public class OrderedItem {
     private Integer itemId;
     private String name;
     private Double price;
+    @Column(length = 1500)
     private String description;
     private String imageReference;
     private Integer amount;
