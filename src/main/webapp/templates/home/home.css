@@ -89,10 +89,6 @@ a.dropdown-toggle.list-group-item {
     word-wrap: break-word;
 }
 
-.item-price {
-    float: right;
-    display: inline-block;
-}
 
 .center-block {
     display: block;

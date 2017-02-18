@@ -10,49 +10,63 @@
         <div th:replace="fragments/header/header :: header"></div>
     </div>
 </div>
-<div class="container-fluid x-content" >
+<div class="container-fluid x-content">
     <div class="row">
         <div class="col-sm-2" id="categoryNavigation">
             <div class="list-group dropdown" th:each="group: ${allCategoryPools}">
                 <a href="#" class=" list-group-item dropdown-toggle" data-toggle="dropdown"><span
                         th:text="${group.name}"></span></a>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li style="background: rgba(0,0,0,0.15)"><a th:href="'?group='+${group.name}">All</a>
+                    </li>
                     <li th:each="cat : ${group.categories}"><a th:href="'?group='+${cat.categoryPool.name}+
-                        '&category='+${cat.name}+${query!=null?'&query='+query:''}" th:text="${cat.name}">Category</a>
+                        '&category='+${cat.name}" th:text="${cat.name}">Category</a>
                     </li>
                 </ul>
             </div>
             <a href="/" class="reset-button list-group-item ">Reset</a>
         </div>
-    <div class="col-sm-10 " id="itemContainer">
-        <div class="col-sm-12 container-fluid">
-            <div class="card pull-left" th:each="item : ${allItems}">
-                <img class="card-img-top img-responsive center-block" th:src="@{${item.imageReference}}"
-                     alt="Card image cap">
-                <div class="card-block">
-                    <a th:href="'item/'+${item.id}">
-                        <h5 th:text="${item.name}" style="display: inline-block" class="card-title">Card title</h5>
-                        <h6 th:text="'$'+${item.price}" class="item-price">Card title</h6>
-                    </a>
-                    <p th:text="${item.description}" class="card-text">Short description of a lot </p>
-                    <div th:if="${session.authenticatedUser!=null} and ${session.authenticatedUser.role== 'admin'}"
-                         th:remove="tag">
-                        <input type="hidden" th:value="${item.id}" name="id"/>
-                        <a class="btn btn-danger" id="deleteItemButton">Delete</a>
-                        <a th:href="'user/admin/modify_item/'+${item.id}" class="btn btn-warning"
-                           id="modifyItemButton">Modify</a>
+
+        <div class="col-sm-10 " id="itemContainer">
+            <div class="col-sm-12 container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="/">Catalogue</a></li>
+                    <li th:if="${group!=null}"><a th:href="${group!=null?'?group='+group:''}" th:text="${group}"></a>
+                    </li>
+                    <li th:if="${category!=null}" class="active"><a
+                            th:href="${group!=null?'?group='+group:''}+${category!=null?'&category='+category:''}"
+                            th:text="${category}"></a></li>
+                </ol>
+                <div class="card pull-left" th:each="item : ${allItems}">
+                    <img class="card-img-top img-responsive center-block" th:src="@{${item.imageReference}}"
+                         alt="Card image cap">
+                    <div class="card-block">
+                        <a th:href="'item/'+${item.id}">
+
+                            <h5 th:text="${item.name}" class="card-title">Card title</h5>
+                        </a>
+                        <p th:text="${item.description}" class="card-text">Short description of a lot </p>
+                        <div style="text-align: right"><h6 th:text="'$'+${item.price}" class="item-price">Card
+                            title</h6></div>
+                        <div th:if="${session.authenticatedUser!=null} and ${session.authenticatedUser.role== 'admin'}"
+                             th:remove="tag">
+                            <input type="hidden" th:value="${item.id}" name="id"/>
+                            <a class="btn btn-danger" id="deleteItemButton">Delete</a>
+                            <a th:href="'user/admin/modify_item/'+${item.id}" class="btn btn-warning"
+                               id="modifyItemButton">Modify</a>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="pull-left" id="paginationContainer">
+                <ul class="pagination">
+                    <li th:classappend="${page==currentPage}? active" th:each="page : ${pages}">
+                        <a th:text="${page}"
+                           th:href="'?page='+${page}+${group!=null?'&group='+group:''}+${category!=null?'&category='+category:''}+${query!=null?'&query='+query:''}">Page</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="pull-left" id="paginationContainer">
-            <ul class="pagination">
-                <li th:classappend="${page==currentPage}? active" th:each="page : ${pages}"><a th:text="${page}"
-                                                                                               th:href="'?page='+${page}+${group!=null?'&group='+group:''}+${category!=null?'&category='+category:''}+${query!=null?'&query='+query:''}">Page</a>
-                </li>
-            </ul>
-        </div>
-    </div>
     </div>
 </div>
 <div class="container-fluid x-footer">

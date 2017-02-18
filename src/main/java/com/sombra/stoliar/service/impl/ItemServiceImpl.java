@@ -54,6 +54,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> findItemsByGroup(String group) {
+        return itemDao.findItemsByGroup(group);
+    }
+
+    @Override
     public List<Item> findItemsByCategoryAndGroup(String category, String group) {
         return itemDao.findItemsByCategoryAndGroup(category, group);
     }

@@ -13,8 +13,15 @@
 <div class="container x-content" id="itemContainer">
     <div class="row">
         <div class="col-md-12">
-            <h1 th:text="${item.name}" class="page">Name
-            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/">Catalogue</a></li>
+                <li><a th:href="${'/?group='+item.category.categoryPool.name}" th:text="${item.category.categoryPool.name}"></a>
+                </li>
+                <li class="active"><a
+                        th:href="${'/?group='+item.category.categoryPool.name}+${'&category='+item.category.name}"
+                        th:text="${item.category.name}"></a></li>
+            </ol>
+
         </div>
     </div>
     <div class="row">
@@ -23,6 +30,8 @@
                 <img th:src="@{${item.imageReference}}" alt="Image not found"></div>
         </div>
         <div class="col-md-6" id="itemInfoContainer">
+            <h1 th:text="${item.name}" class="my-page-header">Name
+            </h1>
             <h3>Description</h3>
             <p th:text="${item.description}"></p>
             <h4>Price</h4>
