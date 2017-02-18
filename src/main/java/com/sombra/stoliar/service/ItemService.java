@@ -6,10 +6,11 @@ import java.util.List;
 
 public interface ItemService {
 
-
     Item saveItem(Item item);
 
     Item modifyItem(Item item);
+
+    List<Item> findItemsByGroup(String group);
 
     List<Item> findItemsByCategoryAndGroup(String category, String group);
 

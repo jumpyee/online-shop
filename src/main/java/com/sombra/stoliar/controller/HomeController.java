@@ -21,10 +21,10 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    CategoryPoolService categoryPoolService;
+    private CategoryPoolService categoryPoolService;
 
     @Autowired
-    ItemService itemService;
+    private ItemService itemService;
 
     @ModelAttribute("allCategoryPools")
     public List<CategoryPool> getAllCategoryPools() {
@@ -40,13 +40,14 @@ public class HomeController {
         if (page == null) {
             page = 1;
         }
-        int itemsOnPage = 5;
+        int itemsOnPage = 12;
 
         List<Item> items;
-        boolean categoryPresent = category != null && group != null;
+        boolean groupPresent = group != null;
+        boolean categoryAndGroupPresent = category != null && group != null;
         boolean queryPresent = query != null;
 
-        if (categoryPresent && queryPresent) {
+        if (categoryAndGroupPresent && queryPresent) {
             model.addAttribute("group", group);
             model.addAttribute("category", category);
             model.addAttribute("query", query);
@@ -54,10 +55,13 @@ public class HomeController {
         } else if (queryPresent) {
             model.addAttribute("query", query);
             items = itemService.findItemsByQuery(query);
-        } else if (categoryPresent) {
+        } else if (categoryAndGroupPresent) {
             model.addAttribute("group", group);
             model.addAttribute("category", category);
             items = itemService.findItemsByCategoryAndGroup(category, group);
+        } else if (groupPresent) {
+            model.addAttribute("group", group);
+            items = itemService.findItemsByGroup(group);
         } else {
             items = itemService.findAllItems();
         }

@@ -58,4 +58,10 @@ public class ItemDaoImpl implements ItemDao {
     public void deleteItem(Item item) {
         sessionFactory.getCurrentSession().delete(item);
     }
+
+    @Override
+    public List<Item> findItemsByGroup(String group) {
+        return sessionFactory.getCurrentSession().createNamedQuery("findItemsByGroup", Item.class).setParameter("groupName", group)
+                .list();
+    }
 }

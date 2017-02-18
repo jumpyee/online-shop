@@ -1,16 +1,21 @@
+.x-content {
+    padding-top: 40px;
+}
+
 .container {
     padding-bottom: 70px;
 }
 
-h1 .page-header {
+h1.my-page-header {
     margin-top: 0px;
     padding-top: 0px;
 }
 
 .thumbnail {
-    height: 500px;
-    width: 500px;
-
+    max-height: 500px;
+    max-width: 500px;
 }
+
+
 
 

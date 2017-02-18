@@ -8,6 +8,7 @@ import java.util.Map;
 
 @NamedQueries({
         @NamedQuery(name = "findItemsByQuery", query = "select i from Item i where i.name like concat('%', :query, '%')"),
+        @NamedQuery(name = "findItemsByGroup", query = "select i from Item i where i.category.categoryPool.name= :groupName"),
         @NamedQuery(name = "findItemsByCategoryAndGroup", query = "select i from Item i where i.category.name= :categoryName and i.category.categoryPool.name= :groupName"),
         @NamedQuery(name = "findItemsByCategoryAndGroupAndQuery", query = "select i from Item i where i.category.name= :categoryName and i.category.categoryPool.name= :groupName and i.name like concat('%', :query, '%')"),
         @NamedQuery(name = "findAllItems", query = "from Item")

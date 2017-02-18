@@ -22,4 +22,6 @@ public interface ItemDao {
 
 
     void deleteItem(Item item);
+
+    List<Item> findItemsByGroup(String group);
 }
