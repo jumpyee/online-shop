@@ -7,84 +7,51 @@ body {
     padding-left: 0px;
 }
 
-.navbar-fixed-left {
-    width: 240px;
-    /*width: 2000px;*/
-    position: relative;
-    border-radius: 0;
+.list-group-item > a{
+    color: #282C2F;
 }
 
-
-
-
-.dropdown-menu > li {
-    height: 47px;
-
-
+.list-group {
+    margin-bottom: 0px;
 }
-.dropdown-menu > li > a {
-    height: 47px;
 
+a.list-group-item:hover, button.list-group-item:hover, a.list-group-item:focus, button.list-group-item:focus {
+    background-color: #4887CE;
+    color: white;
+}
+
+.list-group-item {
+    margin: 0px;
+}
+
+a.dropdown-toggle.list-group-item {
+    margin-top: 0px;
+}
+
+.dropdown-menu .dropdown-menu-right {
+    margin-top: -47px;
+    margin-left: 200px ;
 }
 
 .dropdown-menu {
     padding: 0px 0;
-    border-radius: 1px;
-    text-align: center;
-font-size: 15px;
-
-}
-
-.navbar-fixed-left .navbar-nav > li {
-    float: left;
-    width: 250px;
-    border-radius: 1px;
-    box-shadow: 1px 1px 1px 0 lightgray ;
-}
-
-#categoryNavigation {
-    width: 250px;
-    text-align: center;
-}
-
-#resetButton {
-    width: 250px;
-    text-align: center;
-}
-
-.navbar-fixed-left .navbar-nav > li:hover {
-    background-color: #4887CE ;
-}
-
-.dropdown-menu > li > a {
-    box-shadow: 1px 1px 1px 0 lightgray ;
-}
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #4887CE ;
-    color: white;
+    color:#282C2F ;
 }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     background-color: #4887CE;
-}
-
-.navbar-fixed-left .navbar-nav .dropdown :hover {
     color: white;
 }
 
-.navbar-fixed-left .navbar-nav   .dropdown  :hover {
-    color: white;
-}
-
-.navbar-fixed-left + .container {
-    padding-left: 160px;
+.dropdown-menu > li > a {
+    text-align: center;
 
 }
 
-.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-    margin-top: -47px;
-    margin-left: 251px;
+#categoryNavigation {
+    text-align: center;
 }
+
 
 #categoryNavigation {
     font-size: larger;
@@ -99,7 +66,6 @@ font-size: 15px;
 }
 
 .card {
-
     max-width: 240px;
     padding: 15px;
     margin: 5px;
@@ -138,6 +104,9 @@ font-size: 15px;
 .my-nav > li > a {
     padding-top: 12px;
     padding-bottom: 12px;
+}
 
+#paginationContainer {
+    margin-left: 50px;
 }
 

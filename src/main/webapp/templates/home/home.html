@@ -14,23 +14,23 @@
 
 <!-- Page Content -->
 <div class="container-fluid  main-page-fluid-container">
-    <div class="col-md-2" id="categoryNavigation">
-        <div class=" navbar-default navbar-fixed-left ">
-            <ul class="nav navbar-nav my-nav">
-                <li class="dropdown" th:each="group: ${allCategoryPools}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                            th:text="${group.name}"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li th:each="cat : ${group.categories}"><a th:href="'?group='+${cat.categoryPool.name}+
+    <div class="col-sm-2" id="categoryNavigation">
+
+        <div class="list-group dropdown" th:each="group: ${allCategoryPools}">
+            <!--<li class="dropdown list-group-item" >-->
+                <a href="#" class=" list-group-item dropdown-toggle" data-toggle="dropdown"><span
+                        th:text="${group.name}"></span></a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li th:each="cat : ${group.categories}"><a th:href="'?group='+${cat.categoryPool.name}+
                         '&category='+${cat.name}+${query!=null?'&query='+query:''}" th:text="${cat.name}">Category</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            <!--</li>-->
         </div>
+
     </div>
-    <div class="col-md-10 " id="itemContainer">
-        <div class="col-md-12 container-fluid">
+    <div class="col-sm-10 " id="itemContainer">
+        <div class="col-sm-12 container-fluid">
             <div class="card pull-left" th:each="item : ${allItems}">
                 <img class="card-img-top img-responsive center-block" th:src="@{${item.imageReference}}"
                      alt="Card image cap">
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="pull-right">
+        <div class="pull-left" id="paginationContainer">
             <ul class="pagination">
                 <li  th:classappend="${page==currentPage}? active" th:each="page : ${pages}" ><a  th:text="${page}" th:href="'?page='+${page}+${group!=null?'&group='+group:''}+${category!=null?'&category='+category:''}+${query!=null?'&query='+query:''}"  >Page</a></li>
             </ul>
