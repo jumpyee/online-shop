@@ -1,4 +1,4 @@
-package com.sombra.stoliar.filter;
+package com.sombra.stoliar.filter.exception;
 
 public class NotAuthenticatedException extends RuntimeException {
     public NotAuthenticatedException() {

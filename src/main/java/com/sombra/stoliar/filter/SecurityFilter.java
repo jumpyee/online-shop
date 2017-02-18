@@ -1,6 +1,9 @@
 package com.sombra.stoliar.filter;
 
 import com.sombra.stoliar.entity.User;
+import com.sombra.stoliar.filter.exception.AccessDeniedException;
+import com.sombra.stoliar.filter.exception.NotAuthenticatedException;
+import com.sombra.stoliar.filter.exception.UserBannedException;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

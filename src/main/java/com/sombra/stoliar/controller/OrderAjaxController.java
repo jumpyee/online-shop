@@ -6,7 +6,6 @@ import com.sombra.stoliar.entity.Item;
 import com.sombra.stoliar.entity.OrderedItem;
 import com.sombra.stoliar.entity.User;
 import com.sombra.stoliar.service.BuyOrderService;
-import com.sombra.stoliar.service.OrderedItemService;
 import com.sombra.stoliar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,18 +23,11 @@ import java.util.Set;
 @RequestMapping("/async/order")
 public class OrderAjaxController {
 
-
     @Autowired
     private BuyOrderService buyOrderService;
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private OrderedItemService orderedItemService;
-
-    @Autowired
-    private HttpSession session;
 
     @RequestMapping(value = "/add_order")
     @ResponseBody
@@ -59,7 +50,6 @@ public class OrderAjaxController {
         buyOrderService.saveBuyOrder(new BuyOrder(totalPrice, new Date().toString(), orderedItems, user));
         user.getCart().clear();
         userService.updateUser(user);
-        session.setAttribute("authenticatedUser", userService.findUserByEmail(email));
         return true;
     }
 
@@ -68,8 +58,6 @@ public class OrderAjaxController {
     public boolean deleteItem(@RequestParam("id") Integer id) {
         if (buyOrderService.findBuyOrderById(id) != null) {
             buyOrderService.deleteBuyOrder(buyOrderService.findBuyOrderById(id));
-            User user = (User) session.getAttribute("authenticatedUser");
-            session.setAttribute("authenticatedUser", userService.findUserByEmail(user.getEmail()));
             return true;
         }
         return false;
@@ -82,8 +70,6 @@ public class OrderAjaxController {
             BuyOrder buyOrder = buyOrderService.findBuyOrderById(id);
             buyOrder.setStatus(status);
             buyOrderService.modifyBuyOrder(buyOrder);
-            User user = (User) session.getAttribute("authenticatedUser");
-            session.setAttribute("authenticatedUser", userService.findUserByEmail(user.getEmail()));
             return true;
         }
         return false;

@@ -11,7 +11,6 @@ $(document).ready(function () {
 
     }
 
-
     $('#cancelOrderButton').click(function (e) {
         e.preventDefault();
 

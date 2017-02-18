@@ -4,17 +4,22 @@ html {
 }
 
 body {
-    /* Margin bottom by footer height */
-    margin-bottom: 270px;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+.x-header {
+    width: 100%;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
+.x-content {
+    flex: 1;
+    margin-top: 64px;
+
+}
+
+.x-footer {
     width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 250px;
-    background-color: #f5f5f5;
 }
 
 .footer-distributed {
@@ -24,10 +29,10 @@ footer {
     width: 100%;
     text-align: left;
     font: bold 16px sans-serif;
-
     padding: 55px 50px;
     margin-top: 80px;
 }
+
 
 .footer-distributed .footer-left,
 .footer-distributed .footer-center,

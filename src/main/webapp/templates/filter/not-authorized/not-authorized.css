@@ -1,5 +1,5 @@
-#notAuthorizedPage h2 span{
-    color:#c12e2a;
+#notAuthorizedPage h2 span {
+    color: #c12e2a;
     text-align: center;
 }
 
@@ -11,9 +11,11 @@
     text-align: center;
     color: #FBFEFF;
 }
+
 .image-wrapper {
     text-align: center;
 }
+
 img {
     display: inline-block;
     height: 400px;

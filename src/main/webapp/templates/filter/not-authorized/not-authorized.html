@@ -5,20 +5,19 @@
     <title id="pageTitle">Not logged in</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid x-header">
     <div class="row">
         <div th:replace="fragments/header/header :: header"></div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid x-content" >
     <div class="row">
         <div class="col-sm-12" id="notAuthorizedPage"><h2><span>Access denied!</span> You need to authorize. </h2>
             <div class="image-wrapper"><img th:src="@{/images/static/penguin.png}"></div>
             <h1><a href="/">Home</a></h1></div>
     </div>
 </div>
-
-<div class="container-fluid">
+<div class="container-fluid x-footer">
     <div class="row">
         <div th:replace="fragments/footer/footer :: footer"></div>
     </div>

@@ -33,7 +33,6 @@ public class UserServiceImpl implements UserService {
         return userDao.findUserByEmail(email);
     }
 
-
     @Override
     public boolean registerUser(User user) {
         if (userDao.findUserByEmail(user.getEmail()) != null) {
@@ -51,7 +50,6 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             valid = user.getPassword().equals(securityUtil.hashPassword(password));
             if (valid) {
-
                 session.setAttribute(AUTHENTICATED_USER_KEY, user);
             }
         }
@@ -62,6 +60,12 @@ public class UserServiceImpl implements UserService {
     public void logoutUser() {
         session.removeAttribute(AUTHENTICATED_USER_KEY);
 
+    }
+
+    @Override
+    public User getAuthenticatedUser() {
+        User user = (User) session.getAttribute("authenticatedUser");
+        return findUserByEmail(user.getEmail());
     }
 
     @Override

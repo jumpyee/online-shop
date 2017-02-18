@@ -1,95 +1,61 @@
-body {
-    padding-bottom: 20px;
-    padding-top: 64px!important;
+.x-content {
+    width: 100%;
 }
 
-.main-page-fluid-container {
-    padding-left: 0px;
+.list-group-item > a {
+    color: #282C2F;
 }
 
-.navbar-fixed-left {
-    width: 240px;
-    /*width: 2000px;*/
-    position: relative;
-    border-radius: 0;
+.list-group {
+    margin-bottom: 0px;
 }
 
-
-
-
-.dropdown-menu > li {
-    height: 47px;
-
-
+a.list-group-item:hover, button.list-group-item:hover, a.list-group-item:focus, button.list-group-item:focus {
+    background-color: #4887CE;
+    color: white;
 }
-.dropdown-menu > li > a {
-    height: 47px;
 
+.list-group-item {
+    margin: 0px;
+}
+
+a.dropdown-toggle.list-group-item {
+    margin-top: 0px;
+}
+
+.dropdown-menu .dropdown-menu-right {
+    margin-top: -47px;
+    margin-left: 200px;
 }
 
 .dropdown-menu {
     padding: 0px 0;
-    border-radius: 1px;
-    text-align: center;
-font-size: 15px;
-
-}
-
-.navbar-fixed-left .navbar-nav > li {
-    float: left;
-    width: 250px;
-    border-radius: 1px;
-    box-shadow: 1px 1px 1px 0 lightgray ;
-}
-
-#categoryNavigation {
-    width: 250px;
-    text-align: center;
-}
-
-#resetButton {
-    width: 250px;
-    text-align: center;
-}
-
-.navbar-fixed-left .navbar-nav > li:hover {
-    background-color: #4887CE ;
-}
-
-.dropdown-menu > li > a {
-    box-shadow: 1px 1px 1px 0 lightgray ;
-}
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #4887CE ;
-    color: white;
+    color: #282C2F;
 }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     background-color: #4887CE;
-}
-
-.navbar-fixed-left .navbar-nav .dropdown :hover {
     color: white;
 }
 
-.navbar-fixed-left .navbar-nav   .dropdown  :hover {
-    color: white;
-}
-
-.navbar-fixed-left + .container {
-    padding-left: 160px;
+.dropdown-menu > li > a {
+    text-align: center;
 
 }
 
-.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-    margin-top: -47px;
-    margin-left: 251px;
+.open > .dropdown-menu {
+    position: absolute;
+    left: 100%;
+    top: 0;
 }
+
 
 #categoryNavigation {
+    text-align: center;
     font-size: larger;
     padding-left: 0px;
     padding-top: 0px;
+    padding-right: 0px;
 }
 
 #itemContainer {
@@ -99,7 +65,6 @@ font-size: 15px;
 }
 
 .card {
-
     max-width: 240px;
     padding: 15px;
     margin: 5px;
@@ -121,6 +86,7 @@ font-size: 15px;
     min-height: 50px;
     text-overflow: ellipsis;
     overflow: hidden;
+    word-wrap: break-word;
 }
 
 .item-price {
@@ -134,10 +100,20 @@ font-size: 15px;
     margin-right: auto;
 }
 
+.card :hover .card-text {
+   max-height: 198px;
+}
 
 .my-nav > li > a {
     padding-top: 12px;
     padding-bottom: 12px;
+}
 
+#paginationContainer {
+    margin-left: 50px;
+}
+
+.reset-button {
+    background-color: rgba(0, 0, 0, 0.15);
 }
 

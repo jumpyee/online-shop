@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -42,7 +43,9 @@ public class AdminController {
 
     @ModelAttribute("allUsers")
     public List<User> getAllUsers() {
-        return userService.findAllUsers();
+        List<User> users = userService.findAllUsers();
+        users.remove(userService.getAuthenticatedUser());
+        return users;
     }
 
     @ModelAttribute("allBuyOrders")
@@ -113,7 +116,11 @@ public class AdminController {
         Double price = itemForm.getPrice();
         String description = itemForm.getDescription();
         Category category = categoryService.findCategoryById(itemForm.getCategoryId());
-        String imageReference = imagesService.saveImage(itemForm.getImage());
+        String imageReference = null;
+        MultipartFile image = itemForm.getImage();
+        if (imagesService.isValidImage(image)) {
+            imageReference = imagesService.saveImage(itemForm.getImage());
+        }
         itemService.saveItem(new Item(name, price, description, category, imageReference));
         return "redirect:/user/admin";
     }
@@ -133,7 +140,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/modify_item", method = RequestMethod.POST)
-    public String modifyItem(@Validated @ModelAttribute("itemModifyForm") ItemModifyForm itemModifyForm, BindingResult result, Model model) {
+    public String modifyItem(@Validated @ModelAttribute("itemModifyForm") ItemModifyForm itemModifyForm, BindingResult result) {
         if (result.hasErrors()) {
             return "modify-item/item";
         }
@@ -145,15 +152,13 @@ public class AdminController {
         Category category = categoryService.findCategoryById(itemModifyForm.getCategoryId());
         item.setCategory(category);
 
-        if (!itemModifyForm.getImage().isEmpty()) {
-           
-
+        MultipartFile image = itemModifyForm.getImage();
+        if (imagesService.isValidImage(image)) {
             String imageReference = imagesService.saveImage(itemModifyForm.getImage());
             item.setImageReference(imageReference);
         } else {
             item.setImageReference(itemModifyForm.getImageReference());
         }
-
         itemService.modifyItem(item);
         return "redirect:/";
     }

@@ -31,4 +31,9 @@ public class ImagesServiceImpl implements ImagesService {
         }
         return url;
     }
+
+    @Override
+    public boolean isValidImage(MultipartFile image) {
+        return (!image.isEmpty() && image.getContentType().startsWith("image") && image.getSize() < 3145728);
+    }
 }

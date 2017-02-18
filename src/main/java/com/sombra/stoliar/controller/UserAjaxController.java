@@ -15,8 +15,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
-
 
 @Controller
 @RequestMapping("/async/user")
@@ -27,9 +25,6 @@ public class UserAjaxController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private HttpSession session;
 
     @RequestMapping(value = "/register")
     @ResponseBody
@@ -82,7 +77,6 @@ public class UserAjaxController {
             user.getCart().put(item, amount + 1);
         }
         userService.updateUser(user);
-        session.setAttribute("authenticatedUser", user);
         return true;
     }
 

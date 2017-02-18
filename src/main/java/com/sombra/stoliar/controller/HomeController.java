@@ -31,7 +31,6 @@ public class HomeController {
         return categoryPoolService.findAllCategoryPools();
     }
 
-
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String homePage(@RequestParam(value = "category", required = false) String category,
                            @RequestParam(value = "group", required = false) String group,
@@ -65,7 +64,7 @@ public class HomeController {
         int pageAmount = (items.size() + itemsOnPage - 1) / itemsOnPage;
         items = itemService.getPagedItems(items, page, itemsOnPage);
         List<Integer> pages = new ArrayList<>();
-        for (int i = 1; i < pageAmount+1; i++) {
+        for (int i = 1; i < pageAmount + 1; i++) {
             pages.add(i);
         }
         model.addAttribute("pages", pages);
@@ -93,6 +92,5 @@ public class HomeController {
     public String userBannedPage() {
         return "filter/banned/banned";
     }
-
 
 }

@@ -5,23 +5,23 @@
     <title id="pageTitle">Banned</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid x-header">
     <div class="row">
         <div th:replace="fragments/header/header :: header"></div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid x-content" >
     <div class="row">
         <div class="col-sm-12" id="bannedPage"><h2><span>Access denied!</span> You are banned </h2>
             <div class="image-wrapper"><img th:src="@{/images/static/penguin.png}"></div>
-
+        </div>
     </div>
 </div>
-
-<div class="container-fluid">
+<div class="container-fluid x-footer">
     <div class="row">
         <div th:replace="fragments/footer/footer :: footer"></div>
     </div>
 </div>
 </body>
 </html>
+

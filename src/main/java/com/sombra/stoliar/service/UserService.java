@@ -16,6 +16,8 @@ public interface UserService {
 
     void logoutUser();
 
+    User getAuthenticatedUser();
+
     List<User> findAllUsers();
 
     boolean banUser(String email);
