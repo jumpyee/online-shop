@@ -10,7 +10,6 @@ $(document).ready(function () {
         $('#totalPrice').html("Total $" + total);
     }
 
-
     $('.removeItemButton').click(function (e) {
         e.preventDefault();
 

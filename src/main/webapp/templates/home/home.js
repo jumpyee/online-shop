@@ -5,7 +5,6 @@ $('.card .card-block  #deleteItemButton').click(function (e) {
     var $itemContainer = $button.closest('.card');
     var id = $itemContainer.find('input[name="id"]').val();
 
-
     $.ajax({
         url: '/async/user/admin/delete_item',
         type: 'POST',

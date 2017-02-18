@@ -1,7 +1,10 @@
 package com.sombra.stoliar.config;
 
 import com.sombra.stoliar.filter.SecurityFilter;
+import com.sombra.stoliar.filter.UserSessionFilter;
+import com.sombra.stoliar.service.UserService;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -22,7 +25,9 @@ import java.util.Collections;
 public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
-//    private UserService userService;
+
+    @Autowired
+    private UserService userService;
 
     public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
@@ -38,15 +43,15 @@ public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements A
         return filterRegBean;
     }
 
-//    @Bean
-//    public FilterRegistrationBean userFilter() {
-//        UserUpdateFilter userUpdateFilter = new UserUpdateFilter();
-//        FilterRegistrationBean filterRegBean = new FilterRegistrationBean();
-//        filterRegBean.setUrlPatterns(Collections.singleton("/*"));
-//        filterRegBean.setFilter(userUpdateFilter);
-//        filterRegBean.setOrder(2);
-//        return filterRegBean;
-//    }
+    @Bean
+    public FilterRegistrationBean userFilter() {
+        UserSessionFilter userUpdateFilter = new UserSessionFilter(userService);
+        FilterRegistrationBean filterRegBean = new FilterRegistrationBean();
+        filterRegBean.setUrlPatterns(Collections.singleton("/*"));
+        filterRegBean.setFilter(userUpdateFilter);
+        filterRegBean.setOrder(2);
+        return filterRegBean;
+    }
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {

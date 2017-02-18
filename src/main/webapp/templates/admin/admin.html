@@ -19,7 +19,6 @@
                 <li th:classappend="${ordersControlTab}? active"><a href="#ordersControlTab">Orders</a></li>
             </ul>
         </div>
-
         <div class="col-sm-10">
             <div class="tab-content">
 
@@ -34,8 +33,6 @@
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                 </div>
-
-
                 <div class="tab-pane" id="addCategoryTab" th:classappend="${addCategoryTab}? active">
                     <form th:action="@{/user/admin/add_category}" th:object="${categoryForm}" method="post">
                         <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error ">
@@ -57,7 +54,6 @@
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                 </div>
-
                 <div class="tab-pane" id="addItemTab" th:classappend="${addItemTab}? active">
                     <form th:action="@{/user/admin/add_item}" th:object="${itemForm}" enctype="multipart/form-data"
                           method="post">
@@ -100,7 +96,6 @@
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                 </div>
-
                 <div class="tab-pane" id="userControlTab" th:classappend="${userControlTab}? active">
                     <div class="form-group pull-left">
                         <input type="text" class="search form-control" placeholder="Who are you looking for?">
@@ -175,7 +170,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <div class="container-fluid">

@@ -10,7 +10,6 @@
         <div th:replace="fragments/header/header :: header"></div>
     </div>
 </div>
-
 <div class="container" id="itemContainer">
     <div class="row">
         <div class="col-md-12">
@@ -28,16 +27,16 @@
             <p th:text="${item.description}"></p>
             <h4>Price</h4>
             <p th:text="'$'+${item.price}"></p>
-            <button  type="button"  th:onclick="@{/async/user/item/add_to_cart}" class="btn" id="addToCartButton">Add to
+            <button type="button" th:onclick="@{/async/user/item/add_to_cart}" class="btn" id="addToCartButton">Add to
                 cart
             </button>
             <div class="alert alert-success" style="width: 116px" id="successAlert">
                 <button type="button" class="close" data-dismiss="alert"></button>
-                <strong >Added to cart</strong>
+                <strong>Added to cart</strong>
             </div>
             <div class="alert alert-danger" style="width: 116px" id="dangerAlert">
                 <button type="button" class="close" data-dismiss="alert"></button>
-                <strong >Please login</strong>
+                <strong>Please login</strong>
             </div>
             <input type="hidden" th:value="${item.id}" name="id"/>
             <input type="hidden" th:if="${session.authenticatedUser!= null}"

@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class UserUpdateFilter implements Filter {
+public class UserSessionFilter implements Filter {
 
     private final UserService userService;
 
-    public UserUpdateFilter(UserService userService) {
+    public UserSessionFilter(UserService userService) {
         this.userService = userService;
     }
 
@@ -34,9 +34,11 @@ public class UserUpdateFilter implements Filter {
         HttpSession session = request.getSession(false);
         if (session != null) {
             User user = (User) session.getAttribute("authenticatedUser");
-            String email = user.getEmail();
-            user = userService.findUserByEmail(email);
-            session.setAttribute("authenticatedUser", user);
+            if (user != null) {
+                String email = user.getEmail();
+                user = userService.findUserByEmail(email);
+                session.setAttribute("authenticatedUser", user);
+            }
         }
     }
 

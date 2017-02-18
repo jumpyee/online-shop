@@ -13,23 +13,23 @@ public class DatabaseInitializer implements ApplicationListener<ContextRefreshed
     @Autowired
     private UserService userService;
 
-    private boolean alreadyInitialized=false;
+    private boolean alreadyInitialized = false;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        if(!alreadyInitialized) {
+        if (!alreadyInitialized) {
             initializeAdmin();
-            alreadyInitialized=true;
+            alreadyInitialized = true;
         }
     }
 
-    private void initializeAdmin () {
+    private void initializeAdmin() {
         User admin = new User();
         admin.setEmail("admin@gmail.com");
         admin.setPassword("password");
         admin.setRole("admin");
         User user = userService.findUserByEmail(admin.getEmail());
-        if(user==null) {
+        if (user == null) {
             userService.registerUser(admin);
         }
     }

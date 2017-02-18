@@ -66,12 +66,12 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<Item> getPagedItems(List<Item> items, Integer page, Integer itemsOnPage) {
         int pageAmount = (items.size() + itemsOnPage - 1) / itemsOnPage;
-        if(page>pageAmount) {
+        if (page > pageAmount) {
             return Collections.emptyList();
         }
-        int toIndex = (itemsOnPage * (page-1)) + itemsOnPage;
-        toIndex = toIndex < items.size() ? toIndex : items.size() ;
-        items = items.subList(itemsOnPage * (page-1), toIndex);
+        int toIndex = (itemsOnPage * (page - 1)) + itemsOnPage;
+        toIndex = toIndex < items.size() ? toIndex : items.size();
+        items = items.subList(itemsOnPage * (page - 1), toIndex);
         return items;
     }
 

@@ -2,7 +2,6 @@ package com.sombra.stoliar.controller;
 
 import com.sombra.stoliar.entity.BuyOrder;
 import com.sombra.stoliar.service.BuyOrderService;
-import com.sombra.stoliar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/user/order")
 public class OrderController {
-
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private BuyOrderService buyOrderService;

@@ -4,7 +4,6 @@ package com.sombra.stoliar.dao.impl;
 import com.sombra.stoliar.dao.UserDao;
 import com.sombra.stoliar.entity.Item;
 import com.sombra.stoliar.entity.User;
-import com.sombra.stoliar.service.ItemService;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,8 +17,6 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Autowired
-    private ItemService itemService;
 
     @Override
     public User persist(User user) {
@@ -61,7 +58,6 @@ public class UserDaoImpl implements UserDao {
     public Map<Item, Integer> findCartByUser(User user) {
         return user.getCart();
     }
-
 
 
 }

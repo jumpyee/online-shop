@@ -23,14 +23,12 @@
                     <th class="col-sm-3">Total price</th>
                     <th class="col-sm-3">Date</th>
                     <th class="col-sm-4">Status</th>
-
                 </tr>
                 <tr class="warning no-result">
                     <td colspan="4"><i class="fa fa-warning"></i>No result</td>
                 </tr>
                 </thead>
                 <tbody>
-
                 <tr class="order" th:each="order : ${session.authenticatedUser.orders}">
                     <td><a th:text="'#'+${order.id}" th:href="'/user/order/'+${order.id}">Id</a></td>
                     <td><a th:text="'$'+${order.totalPrice}" th:href="'/user/order/'+${order.id}">Total price</a></td>
@@ -43,7 +41,6 @@
         </div>
     </div>
 </div>
-
 <script src="orders.js" th:src="@{/templates/orders/orders.js}"></script>
 </body>
 <div class="container-fluid">
