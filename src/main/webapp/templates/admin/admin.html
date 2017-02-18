@@ -5,10 +5,13 @@
     <title id="pageTitle">Admin Page</title>
 </head>
 <body>
-<div class="container-fluid">
+
+<div class="container-fluid x-header">
     <div class="row">
         <div th:replace="fragments/header/header :: header"></div>
     </div>
+</div>
+<div class="container-fluid x-content" >
     <div class="row">
         <div class="col-sm-2">
             <ul id="adminPageTabs" class="nav nav-tabs nav-stacked">
@@ -172,7 +175,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid x-footer">
     <div class="row">
         <div th:replace="fragments/footer/footer :: footer"></div>
     </div>

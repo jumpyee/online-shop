@@ -5,12 +5,12 @@
 </head>
 <link rel="stylesheet" type="text/css" th:href="@{/templates/home/home.css}"/>
 <body>
-<div class="container-fluid">
+<div class="container-fluid x-header">
     <div class="row">
         <div th:replace="fragments/header/header :: header"></div>
     </div>
 </div>
-<div class="container-fluid  ">
+<div class="container-fluid x-content" >
     <div class="row">
         <div class="col-sm-2" id="categoryNavigation">
             <div class="list-group dropdown" th:each="group: ${allCategoryPools}">
@@ -55,7 +55,7 @@
     </div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid x-footer">
     <div class="row">
         <div th:replace="fragments/footer/footer :: footer"></div>
     </div>

@@ -5,12 +5,12 @@
     <title id="pageTitle">Access denied</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid x-header">
     <div class="row">
         <div th:replace="fragments/header/header :: header"></div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid x-content" >
     <div class="row">
         <div class="col-sm-12" id="accessDeniedPage"><h2><span>Access denied!</span> You don't have rights to access
             this page. </h2>
@@ -18,7 +18,7 @@
             <h1><a href="/">Home</a></h1></div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid x-footer">
     <div class="row">
         <div th:replace="fragments/footer/footer :: footer"></div>
     </div>

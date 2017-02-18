@@ -5,12 +5,12 @@
     <title id="pageTitle">Item</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid x-header">
     <div class="row">
         <div th:replace="fragments/header/header :: header"></div>
     </div>
 </div>
-<div class="container" id="itemContainer">
+<div class="container x-content" id="itemContainer">
     <div class="row">
         <div class="col-md-12">
             <h1 th:text="${item.name}" class="page">Name
@@ -44,7 +44,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid x-footer">
     <div class="row">
         <div th:replace="fragments/footer/footer :: footer"></div>
     </div>

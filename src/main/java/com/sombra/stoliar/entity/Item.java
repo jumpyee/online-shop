@@ -2,6 +2,7 @@ package com.sombra.stoliar.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Map;
 
 
@@ -20,6 +21,7 @@ public class Item {
 
     private String name;
     private Double price;
+    @Column(length = 1500)
     private String description;
     private String imageReference;
     @ManyToOne
