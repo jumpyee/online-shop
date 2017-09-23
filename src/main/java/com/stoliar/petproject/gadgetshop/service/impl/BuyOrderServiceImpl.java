@@ -1,8 +1,8 @@
-package com.sombra.stoliar.service.impl;
+package com.stoliar.petproject.gadgetshop.service.impl;
 
-import com.sombra.stoliar.dao.BuyOrderDao;
-import com.sombra.stoliar.entity.BuyOrder;
-import com.sombra.stoliar.service.BuyOrderService;
+import com.stoliar.petproject.gadgetshop.dao.BuyOrderDao;
+import com.stoliar.petproject.gadgetshop.entity.BuyOrder;
+import com.stoliar.petproject.gadgetshop.service.BuyOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

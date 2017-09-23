@@ -1,6 +1,6 @@
-package com.sombra.stoliar.utils.impl;
+package com.stoliar.petproject.gadgetshop.utils.impl;
 
-import com.sombra.stoliar.utils.SecurityUtil;
+import com.stoliar.petproject.gadgetshop.utils.SecurityUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Component;
 

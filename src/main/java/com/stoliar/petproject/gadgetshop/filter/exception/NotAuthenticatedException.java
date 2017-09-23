@@ -1,4 +1,4 @@
-package com.sombra.stoliar.filter.exception;
+package com.stoliar.petproject.gadgetshop.filter.exception;
 
 public class NotAuthenticatedException extends RuntimeException {
     public NotAuthenticatedException() {

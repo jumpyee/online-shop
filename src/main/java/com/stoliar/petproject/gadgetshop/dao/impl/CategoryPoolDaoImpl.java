@@ -1,7 +1,7 @@
-package com.sombra.stoliar.dao.impl;
+package com.stoliar.petproject.gadgetshop.dao.impl;
 
-import com.sombra.stoliar.dao.CategoryPoolDao;
-import com.sombra.stoliar.entity.CategoryPool;
+import com.stoliar.petproject.gadgetshop.dao.CategoryPoolDao;
+import com.stoliar.petproject.gadgetshop.entity.CategoryPool;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

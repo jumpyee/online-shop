@@ -1,7 +1,7 @@
-package com.sombra.stoliar.dao.impl;
+package com.stoliar.petproject.gadgetshop.dao.impl;
 
-import com.sombra.stoliar.dao.ItemDao;
-import com.sombra.stoliar.entity.Item;
+import com.stoliar.petproject.gadgetshop.dao.ItemDao;
+import com.stoliar.petproject.gadgetshop.entity.Item;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

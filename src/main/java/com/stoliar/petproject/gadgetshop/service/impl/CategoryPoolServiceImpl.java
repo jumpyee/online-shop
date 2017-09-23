@@ -1,8 +1,8 @@
-package com.sombra.stoliar.service.impl;
+package com.stoliar.petproject.gadgetshop.service.impl;
 
-import com.sombra.stoliar.dao.CategoryPoolDao;
-import com.sombra.stoliar.entity.CategoryPool;
-import com.sombra.stoliar.service.CategoryPoolService;
+import com.stoliar.petproject.gadgetshop.dao.CategoryPoolDao;
+import com.stoliar.petproject.gadgetshop.entity.CategoryPool;
+import com.stoliar.petproject.gadgetshop.service.CategoryPoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

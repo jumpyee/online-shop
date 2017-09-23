@@ -1,9 +1,9 @@
-package com.sombra.stoliar.service.impl;
+package com.stoliar.petproject.gadgetshop.service.impl;
 
 import ch.qos.logback.classic.Logger;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.sombra.stoliar.service.ImagesService;
+import com.stoliar.petproject.gadgetshop.service.ImagesService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
